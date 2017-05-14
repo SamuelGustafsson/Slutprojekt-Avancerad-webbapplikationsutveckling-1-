@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "debug": "set DEBUG=express:* & npm start",
+    "test": "mocha tests/*.test.js --colors"
   },
   "dependencies": {
     "@types/mongoose": "^4.7.11",
@@ -15,5 +17,10 @@
     "mongoose": "^4.9.8",
     "morgan": "~1.8.1",
     "serve-favicon": "~2.4.2"
+  },
+  "devDependencies": {
+    "expect": "^1.20.2",
+    "mocha": "^3.4.0",
+    "supertest": "^3.0.0"
   }
 }
