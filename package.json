@@ -1,19 +1,26 @@
 {
-  "name": "bilbokningen",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
-  "dependencies": {
-    "@types/mongoose": "^4.7.11",
-    "body-parser": "~1.17.1",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.3",
-    "express": "~4.15.2",
-    "hbs": "~4.0.1",
-    "mongoose": "^4.9.8",
-    "morgan": "~1.8.1",
-    "serve-favicon": "~2.4.2"
-  }
+    "name": "bilbokningen",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node ./bin/www",
+        "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/*.test.js",
+        "test-watch": "nodemon --exec 'npm test'"
+    },
+    "dependencies": {
+        "@types/mongoose": "^4.7.11",
+        "body-parser": "~1.17.1",
+        "cookie-parser": "~1.4.3",
+        "debug": "~2.6.3",
+        "express": "~4.15.2",
+        "hbs": "~4.0.1",
+        "mongoose": "^4.9.8",
+        "morgan": "~1.8.1",
+        "serve-favicon": "~2.4.2"
+    },
+    "devDependencies": {
+        "expect": "^1.20.2",
+        "mocha": "^3.3.0",
+        "supertest": "^3.0.0"
+    }
 }
