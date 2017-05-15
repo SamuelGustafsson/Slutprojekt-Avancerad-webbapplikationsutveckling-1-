@@ -1,3 +1,4 @@
+
 let express   = require('express'),
 path          = require('path'),
 favicon       = require('serve-favicon'),
@@ -8,9 +9,10 @@ bodyParser    = require('body-parser');
 require("./config/mongooseConn");
 require("./config/hbsHelper");
 
-
+// Routes
 let index = require('./routes/index');
 let users = require('./routes/users');
+let carsRouter = require('./routes/carsRouter');
 
 let app = express();
 
@@ -26,16 +28,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/cars', carsRouter);
 
 // catch 404 and forward to error handler
+
 app.use(function(req, res, next) {
   let err = new Error('Not Found');
+
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
