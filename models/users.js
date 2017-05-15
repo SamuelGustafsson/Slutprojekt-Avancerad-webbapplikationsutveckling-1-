@@ -18,4 +18,7 @@ let userSchema = Schema(
             required: true
         }
     }
-)
+);
+
+let User = mongoose.model('User', carSchema);
+module.exports = User;
