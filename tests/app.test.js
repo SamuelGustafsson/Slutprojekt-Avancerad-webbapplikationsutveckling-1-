@@ -2,6 +2,8 @@ const expect  = require("expect");
 const request = require("supertest");
 const app     = require("../app");
 
+// Add dymmy cars here
+
 describe("GET /", () => {
 
   it("should get /", (done) => {

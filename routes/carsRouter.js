@@ -28,27 +28,34 @@ carsRouter.route('/')
         });
     })
 
-carsRouter.route('/carId')
+carsRouter.route('/:carId')
     .get(function (req, res, next) {
-        Cars.findOne({ _id: req.params._id }, (error, car) => {
+        Cars.findById(req.params.carId, (error, car) => {
             if (error) throw error;
             res.json(car);
         })
     })
 
-    .patch((req, res, next) => {
-        var updateObject = req.body;
-        var id = req.params.id;
-        Cars.update({ _id: ObjectId(id) }, { $set: updateObject });
-        console.log(`Car id: ${id} updated`);
+    // Update car by id
+    .put(function (req, res, next) {
+        Cars.findByIdAndUpdate(
+            req.params.carId,
+            {
+                $set: req.body
+            },
+            {
+                new: true
+            },
+            function (err, car) {
+                if (err) throw err;
+                res.json(car);
+            });
     })
-
+    // Delete car by id
     .delete(function (req, res, next) {
-        Cars.remove({_id: req.params._id}, (error, car) => {
-            if (error) throw error 
-            console.log(`Car ${req.params._id} deleted:`);
-            console.log(car);
-
+        Cars.remove({ _id: req.params.carId }, (error, car) => {
+            if (error) throw error
+            console.log(`Car ${req.params.carId} deleted:`);
         })
     });
 
