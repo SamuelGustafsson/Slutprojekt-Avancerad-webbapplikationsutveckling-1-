@@ -3,11 +3,17 @@ let express   = require('express'),
 path          = require('path'),
 favicon       = require('serve-favicon'),
 logger        = require('morgan'),
-cookieParser  = require('cookie-parser'),
-bodyParser    = require('body-parser');
+
+passport      = require('passport'),
+session       = require('express-session'),
+bodyParser    = require('body-parser'),
+cookieParser  = require('cookie-parser');
+
 
 require("./config/mongooseConn");
 require("./config/hbsHelper");
+
+const User = require('./models/users');
 
 // Routes
 let index = require('./routes/index');
@@ -20,11 +26,43 @@ let app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'));
+
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: "randomString123",
+  resave: true,
+  saveUninitialized: false
+}));
+
+// Passport configuration with mongoose
+// Based on: https://github.com/jesperorb/mongoose-passport
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+//Middleware to check if 'req.user' is set
+app.use((req,res,next) => {
+  console.log("chk user obj exist: ",req.user);
+  next();
+});
+
+// middleware: set global value(s)
+app.use((req,res,next) => {
+  app.locals.loggedin = false;
+
+  if( req.user ){
+    app.locals.loggedin = true;
+  }
+  next();
+});
 
 app.use('/', index);
 app.use('/users', users);

@@ -1,9 +1,13 @@
-const mongoose = require('mongoose').require('mongoose-type-email');
-Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+require('mongoose-type-email');
+const Schema = mongoose.Schema;
+
+
+const passportLocalMongoose = require('passport-local-mongoose');
 
 let userSchema = Schema(
     {
-        firstname: {
+/*        firstname: {
             type: String,
             required: true,
         },
@@ -14,13 +18,13 @@ let userSchema = Schema(
         email: {
             type: mongoose.SchemaTypes.Email, 
             required: true
-        },
-        password: {
-            type: String,
-            required: true
-        }        
+        },*/
+      username: String,
+      password: String
     }
 );
 
-let User = mongoose.model('User', carSchema);
+userSchema.plugin(passportLocalMongoose);
+
+let User = mongoose.model('User', userSchema);
 module.exports = User;
