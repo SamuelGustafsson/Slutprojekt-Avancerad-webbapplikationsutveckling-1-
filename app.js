@@ -13,6 +13,7 @@ require("./config/hbsHelper");
 let index = require('./routes/index');
 let users = require('./routes/users');
 let carsRouter = require('./routes/carsRouter');
+let bookingsRouter = require('./routes/bookingsRouter');
 
 let app = express();
 
@@ -29,9 +30,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/cars', carsRouter);
+app.use('/bookings', bookingsRouter);
 
 // catch 404 and forward to error handler
-
 app.use(function(req, res, next) {
   let err = new Error('Not Found');
 

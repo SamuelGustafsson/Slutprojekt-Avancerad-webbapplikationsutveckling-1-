@@ -1,10 +1,8 @@
 const express = require('express');
-// var bodyParser = require('body-parser');
+const carsRouter = express.Router();
 const mongoose = require('mongoose');
 
 let Cars = require('../models/cars');
-
-const carsRouter = express.Router();
 
 carsRouter.route('/')
 

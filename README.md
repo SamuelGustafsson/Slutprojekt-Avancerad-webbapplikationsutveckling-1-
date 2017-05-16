@@ -1,9 +1,4 @@
-
 # Slutprojekt-Avancerad-webbapplikationsutveckling-1-
-
-Uppgifter
-
-
 
 #### What: Slutprojekt-Avancerad-webbapplikationsutveckling-1-Bilbokningen
 #### Why: [Final Exam - Bilbokningen](https://docs.google.com/document/d/1om2ZE1gN9QLibn1Vaub_SFwp3Z0_UzQoCOhbaM_Nz6M/edit#heading=h.kucs5wsop1bb)
