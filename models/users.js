@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 require('mongoose-type-email');
 const Schema = mongoose.Schema;
 
-const passportLocalMongoose = require('passport-local-mongoose');
 
+const passportLocalMongoose = require('passport-local-mongoose');
 
 let userSchema = Schema(
     {
@@ -21,7 +21,6 @@ let userSchema = Schema(
         },*/
       username: String,
       password: String
-
     }
 );
 
