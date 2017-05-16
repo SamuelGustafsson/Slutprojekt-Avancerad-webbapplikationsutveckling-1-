@@ -1,72 +1,52 @@
 [
   {
-    "_id": "591959ff0d89753e74b397f4",
-    "updatedAt": "2017-05-15T07:34:23.233Z",
-    "createdAt": "2017-05-15T07:34:23.233Z",
     "brand": "Volvo",
     "model": "v70",
     "automat": true,
     "roof_rack": true,
-    "price": 300000,
+    "price": 1500,
     "booked": false,
     "seats": 5,
-    "image": "https://farm3.staticflickr.com/2840/9705619070_ae4d726737_b.jpg",    
-    "__v": 0
+    "image": "https://farm3.staticflickr.com/2840/9705619070_ae4d726737_b.jpg"
   },
   {
-    "_id": "591996bf142b9c272824e3ef",
-    "updatedAt": "2017-05-15T11:53:35.431Z",
-    "createdAt": "2017-05-15T11:53:35.431Z",
     "brand": "Ford",
     "model": "Mustang GT500",
     "automat": false,
     "roof_rack": false,
-    "price": 500000,
+    "price": 2300,
     "booked": false,
     "seats": 5,
-    "image": "http://roa.h-cdn.co/assets/16/30/1469455654-gt500.png",
-    "__v": 0
+    "image": "http://roa.h-cdn.co/assets/16/30/1469455654-gt500.png"
   },
   {
-    "_id": "5919c22f20cd1648e0feb028",
-    "updatedAt": "2017-05-15T14:58:55.814Z",
-    "createdAt": "2017-05-15T14:58:55.814Z",
     "brand": "Saab",
     "model": "9-5",
     "automat": false,
     "roof_rack": true,
-    "price": 500000,
+    "price": 1300,
     "booked": false,
     "seats": 5,
-    "image": "http://www.saabplanet.com/wp-content/uploads/saab-9-510.jpg",
-    "__v": 0
+    "image": "http://www.saabplanet.com/wp-content/uploads/saab-9-510.jpg"
   },
   {
-    "_id": "5919c29520cd1648e0feb029",
-    "updatedAt": "2017-05-15T15:00:37.015Z",
-    "createdAt": "2017-05-15T15:00:37.015Z",
     "brand": "Ford",
     "model": "Ka",
     "automat": false,
     "roof_rack": false,
-    "price": 83000,
+    "price": 900,
     "booked": false,
     "seats": 5,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Ford_Ka_front_20071011.jpg",
-    "__v": 0
+    "image": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Ford_Ka_front_20071011.jpg"
   },
   {
-    "_id": "591aab8fc435300ca0253246",
-    "updatedAt": "2017-05-16T07:34:39.732Z",
-    "createdAt": "2017-05-16T07:34:39.732Z",
     "brand": "Buggatti",
     "model": "Veyron super sport",
     "automat": false,
     "roof_rack": false,
-    "price": 13000000,
+    "price": 5000,
     "booked": false,
     "seats": 2,
-    "image": "http://roa.h-cdn.co/assets/16/30/1469455654-gt500.png",
-    "__v": 0
+    "image": "http://roa.h-cdn.co/assets/16/30/1469455654-gt500.png"
   }
 ]

@@ -1,8 +1,6 @@
 const mongoose = require('mongoose').require('mongoose-type-email');
 Schema = mongoose.Schema;
 
-
-
 let userSchema = Schema(
     {
         firstname: {
@@ -21,7 +19,6 @@ let userSchema = Schema(
             type: String,
             required: true
         }        
-       
     }
 );
 
