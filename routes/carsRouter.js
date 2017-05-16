@@ -5,11 +5,6 @@ const mongoose = require('mongoose');
 let Cars = require('../models/cars');
 
 const carsRouter = express.Router();
-// carsRouter.use(bodyParser.json());
-// carsRouter.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-//     extended: true
-// }));
-
 
 carsRouter.route('/')
 
@@ -56,6 +51,7 @@ carsRouter.route('/:carId')
         Cars.remove({ _id: req.params.carId }, (error, car) => {
             if (error) throw error
             console.log(`Car ${req.params.carId} deleted:`);
+            res.send(`Car id: ${req.params.carId} has been deleteted`);
         })
     });
 
