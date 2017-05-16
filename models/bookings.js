@@ -4,12 +4,12 @@ const mongoose = require('mongoose'),
 let bookingSchema = new Schema(
     {
         car_id: {
-            type: Number,
+            type: String,
             unique: true,
             required: true
         },
         user_id: {
-            type: Number,
+            type: String,
             unique: true,
             required: true
         },
