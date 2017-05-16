@@ -1,0 +1,30 @@
+<div class="container">
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Users</div>
+    <div class="panel-body">
+      <p>List all users</p>
+    </div>
+
+    <table class="table">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Username</th>
+        <th>Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+      {{#each usersObj}}
+        <tr>
+          <th>{{@index}}</th>
+          <td>{{this.username}}</td>
+          <td><a href="/users/delete/{{this._id}}">Delete</a></td>
+        </tr>
+      {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+</div> <!-- container -->
+
