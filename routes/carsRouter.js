@@ -1,14 +1,14 @@
 const express = require('express');
-var bodyParser = require('body-parser');
+// var bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 let Cars = require('../models/cars');
 
 const carsRouter = express.Router();
-carsRouter.use(bodyParser.json());
-carsRouter.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-    extended: true
-}));
+// carsRouter.use(bodyParser.json());
+// carsRouter.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+//     extended: true
+// }));
 
 
 carsRouter.route('/')
@@ -24,10 +24,40 @@ carsRouter.route('/')
     .post((req, res, next) => {
         Cars.create(req.body, (err, car) => {
             if (err) throw err;
-            console.log('Car created!');
-            console.info(req.body);
+            res.json(car);
         });
     })
+
+carsRouter.route('/:carId')
+    .get(function (req, res, next) {
+        Cars.findById(req.params.carId, (error, car) => {
+            if (error) throw error;
+            res.json(car);
+        })
+    })
+
+    // Update car by id
+    .put(function (req, res, next) {
+        Cars.findByIdAndUpdate(
+            req.params.carId,
+            {
+                $set: req.body
+            },
+            {
+                new: true
+            },
+            function (err, car) {
+                if (err) throw err;
+                res.json(car);
+            });
+    })
+    // Delete car by id
+    .delete(function (req, res, next) {
+        Cars.remove({ _id: req.params.carId }, (error, car) => {
+            if (error) throw error
+            console.log(`Car ${req.params.carId} deleted:`);
+        })
+    });
 
 module.exports = carsRouter;
 

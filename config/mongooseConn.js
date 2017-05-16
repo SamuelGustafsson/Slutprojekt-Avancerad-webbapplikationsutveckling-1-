@@ -3,7 +3,7 @@ let url           = "mongodb://admin:admin@ds139791.mlab.com:39791/bilbokning";
 
 if( process.env.NODE_ENV === "test" ){
   console.log('\x1b[36m%s\x1b[0m', "\nTest ENV activated\n");
-  url = "mongodb://admin:admin@ds139791.mlab.com:39791/bilbokningTest";
+  url = "mongodb://admin:admin@ds137121.mlab.com:37121/bilbokning_test";
 }
 
 mongoose.connect(url);

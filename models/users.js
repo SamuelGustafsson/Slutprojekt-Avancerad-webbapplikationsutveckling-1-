@@ -16,7 +16,12 @@ let userSchema = Schema(
         email: {
             type: mongoose.SchemaTypes.Email, 
             required: true
-        }
+        },
+        password: {
+            type: String,
+            required: true
+        }        
+       
     }
 );
 
