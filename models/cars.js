@@ -5,7 +5,7 @@ let carSchema = new Schema(
     {
         brand: {
             type: String,
-            required: true
+            required: true,
         },
         model: {
             type: String,
