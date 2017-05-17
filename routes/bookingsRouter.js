@@ -23,7 +23,6 @@ bookingsRouter.route('/')
         });
     })
 
-
 bookingsRouter.route('/:reservationId')
 
     // Get reservation by id
