@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "debug": "set DEBUG=express:* & npm start",
-    "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha tests/*.test.js --colors"
+    "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha tests/*.test.js --colors",
+    "localhost": "export NODE_ENV=localhost || SET \"NODE_ENV=localhost\" & npm start"
   },
   "dependencies": {
     "@types/mongoose": "^4.7.11",

@@ -11,6 +11,7 @@
 * `npm start` - normal mode
 * `npm run debug` - debug mode
 * `npm run test` - test mode (mocha)
+* `npm run localhost` - normal mode + localhost DB mode
 
 ###Konto MLAB.com
 URL: https://mlab.com/
