@@ -18,11 +18,14 @@ carsRouter.route('/')
         Cars.create(req.body, (err, car) => {
             if (err) throw err;
             res.json(car);
+            console.log(`Added: ${req.body.brand} ${req.body.model} to database`);
         });
     })
 
 carsRouter.route('/:carId')
-    .get(function (req, res, next) {
+
+    // Get car by id
+    .get((req, res, next) => {
         Cars.findById(req.params.carId, (error, car) => {
             if (error) throw error;
             res.json(car);
@@ -30,22 +33,18 @@ carsRouter.route('/:carId')
     })
 
     // Update car by id
-    .put(function (req, res, next) {
-        Cars.findByIdAndUpdate(
-            req.params.carId,
-            {
-                $set: req.body
-            },
-            {
-                new: true
-            },
-            function (err, car) {
+    .put((req, res, next) => {
+        Cars.findByIdAndUpdate(req.params.carId, {$set: req.body}, 
+
+        // return the modified document rather than the original. defaults to false
+        {new: true},
+            (err, car) => {
                 if (err) throw err;
                 res.json(car);
             });
     })
     // Delete car by id
-    .delete(function (req, res, next) {
+    .delete((req, res, next) => {
         Cars.remove({ _id: req.params.carId }, (error, car) => {
             if (error) throw error
             console.log(`Car ${req.params.carId} deleted:`);
