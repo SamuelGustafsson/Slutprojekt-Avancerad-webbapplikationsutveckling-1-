@@ -9,7 +9,11 @@
     "localhost": "export NODE_ENV=localhost || SET \"NODE_ENV=localhost\" & npm start"
   },
   "dependencies": {
+    "@types/express-session": "0.0.32",
     "@types/mongoose": "^4.7.11",
+    "@types/passport": "^0.3.3",
+    "@types/passport-local-mongoose": "^4.0.8",
+    "@types/randomstring": "^1.1.5",
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
