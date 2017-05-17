@@ -9,20 +9,42 @@ const User = require("../models/users");
 
 
 
-const isLoggedIn = (req, res, next) => {
+
+router.post('/login', passport.authenticate('local', { failureRedirect: "/?formError=true" }), (req, res) => {
+  res.redirect('/users');
+});
+
+router.post('/signup', (req, res) => {
+  User.register(new User({
+    username : req.body.username,
+    firstname : req.body.firstname,
+    lastname : req.body.lastname,
+    email : req.body.username,
+  }), req.body.password, (error, user) => {
+    if (error) return res.redirect("/signup?formError=true");
+    passport.authenticate('local')(req, res, ()=> {
+      res.redirect('/users');
+    });
+  });
+});
+
+
+
+/*
+  middleware: redirect user IF one is NOT logged in
+ (one is unable to access routes after this middleware!)
+*/
+router.use( (req, res, next) => {
   if (req.isAuthenticated()) return next();
-  res.redirect('/');
-};
+  res.redirect('/?authError=true');
+});
 
 
-
-
-
-
-router.get('/', isLoggedIn, function(req, res, next) {
+router.get('/', function(req, res, next) {
 
   User.find((err, result) => {
     if(err){ console.log(err); }
+
     res.render('users',{
       usersObj: result
     });
@@ -30,55 +52,10 @@ router.get('/', isLoggedIn, function(req, res, next) {
 
 });
 
-
-router.post('/login', passport.authenticate('local'), (req, res) => {
-  console.log("hiii");
-  res.redirect('/users');
-});
-
-
-
-router.post('/signup', (req, res) => {
-  console.log("-------------");
-  console.log(req.body);
-  User.register(new User({ username : req.body.username }), req.body.password, (error, user) => {
-    console.log(error);
-    if (error) return console.log("Failed signup!!!!!");
-    passport.authenticate('local')(req, res, ()=> {
-      res.redirect('/users');
-    });
-  });
-});
-
 router.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/');
 });
-
-/*router.post('/in', passport.authenticate('local'),function(req, res, next) {
-  res.redirect('/user');
-/!*  const {email, password} = req.body;
-
-  res.send({
-    data: req.body
-    //data: {email: "test2@test.com", password: 1}
-  });*!/
-
-});*/
-
-
-
-
-
-/*router.post('/signup', function(req, res, next) {
-  const {email, password} = req.body;
-
-  res.send({
-    data: req.body
-    //data: {email: "test2@test.com", password: 1}
-  });
-
-});*/
 
 
 
@@ -86,6 +63,7 @@ router.get('/logout', (req, res) => {
 
 
 router.get('/insert', function(req, res, next){
+  /* ! does not insert a reg. user with a hashed password atm! */
 
    let firstname = randomstring.generate({
     length: 4,

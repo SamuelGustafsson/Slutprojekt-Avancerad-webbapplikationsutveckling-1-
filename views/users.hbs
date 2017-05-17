@@ -10,7 +10,9 @@
       <thead>
       <tr>
         <th>#</th>
-        <th>Username</th>
+        <th>Username/Email</th>
+        <th>First name</th>
+        <th>Last name</th>
         <th>Delete</th>
       </tr>
       </thead>
@@ -19,6 +21,8 @@
         <tr>
           <th>{{@index}}</th>
           <td>{{this.username}}</td>
+          <td>{{this.firstname}}</td>
+          <td>{{this.lastname}}</td>
           <td><a href="/users/delete/{{this._id}}">Delete</a></td>
         </tr>
       {{/each}}
