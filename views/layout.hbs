@@ -33,12 +33,29 @@
         {{#if loggedin}}<li><a href="/users/logout">GET /users/logout (logout)</a></li>{{/if}}
       </ul>
     </li>
+    <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        /dummy route <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a href="/dummy/cars/insert">GET /dummy/cars/insert</a></li>
+        <li><a href="/dummy/cars/delete">GET /dummy/cars/delete</a></li>
+      </ul>
+    </li>
   </ul>
-
     {{{body}}}
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="javascripts/main.js"></script>
+
+  <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
+  <input type="text" name="daterange">
+  <script>
+    $('input[name="daterange"]').daterangepicker();
+  </script>
   </body>
 </html>
