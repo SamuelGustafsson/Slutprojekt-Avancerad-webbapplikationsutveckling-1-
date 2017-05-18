@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "debug": "set DEBUG=express:* & npm start",
-    "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha tests/*.test.js --colors",
+    "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && nyc mocha tests/*.test.js --colors",
     "localhost": "export NODE_ENV=localhost || SET \"NODE_ENV=localhost\" & npm start"
   },
   "dependencies": {
@@ -34,6 +34,7 @@
     "@types/supertest": "^2.0.0",
     "expect": "^1.20.2",
     "mocha": "^3.4.0",
+    "nyc": "^10.3.2",
     "supertest": "^3.0.0"
   }
 }
