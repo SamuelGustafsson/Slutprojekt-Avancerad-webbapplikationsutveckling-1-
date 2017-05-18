@@ -1,14 +1,16 @@
 let mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-mongoose.Promise = global.Promise;
-
 let carSchema = new Schema({
     brand: {
         type: String,
+        required: true,
+    },
+    model: {
+        type: String,
         required: true
     },
-    automat: {
+    automatic: {
         type: Boolean,
         required: true,
     },
@@ -27,11 +29,14 @@ let carSchema = new Schema({
     seats: {
         type: Number,
         required: true
+    },
+    image: {
+        type: String,
+        required: true
     }
 }, {
     timestamps: true
 });
 
-let Cars = mongoose.model('Car', carSchema);
-
-module.exports = { Cars };
+let Car = mongoose.model('Car', carSchema);
+module.exports = Car;

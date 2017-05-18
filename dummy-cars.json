@@ -1,0 +1,123 @@
+[
+  {
+    "brand": "Volvo",
+    "model": "v70",
+    "automatic": true,
+    "roof_rack": true,
+    "price": 1500,
+    "booked": false,
+    "seats": 5,
+    "image": "https://farm3.staticflickr.com/2840/9705619070_ae4d726737_b.jpg"
+  },
+  {
+    "brand": "Ford",
+    "model": "Mustang GT500",
+    "automatic": false,
+    "roof_rack": false,
+    "price": 2300,
+    "booked": false,
+    "seats": 5,
+    "image": "http://roa.h-cdn.co/assets/16/30/1469455654-gt500.png"
+  },
+  {
+    "brand": "Saab",
+    "model": "9-5",
+    "automatic": false,
+    "roof_rack": true,
+    "price": 1300,
+    "booked": false,
+    "seats": 5,
+    "image": "http://www.saabplanet.com/wp-content/uploads/saab-9-510.jpg"
+  },
+  {
+    "brand": "Ford",
+    "model": "Ka",
+    "automatic": false,
+    "roof_rack": false,
+    "price": 900,
+    "booked": false,
+    "seats": 5,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Ford_Ka_front_20071011.jpg"
+  },
+  {
+    "brand": "Buggatti",
+    "model": "Veyron super sport",
+    "automatic": false,
+    "roof_rack": false,
+    "price": 5000,
+    "booked": false,
+    "seats": 2,
+    "image": "http://roa.h-cdn.co/assets/16/30/1469455654-gt500.png"
+  },
+  {
+    "brand": "Volvo",
+    "model": "s40",
+    "automatic": false,
+    "roof_rack": false,
+    "price": 900,
+    "booked": false,
+    "seats": 5,
+    "image": "//upload.wikimedia.org/wikipedia/commons/thumb/f/f8/2000-2002_Volvo_S40_2.0_sedan_%282011-11-17%29.jpg/250px-2000-2002_Volvo_S40_2.0_sedan_%282011-11-17%29.jpg"
+  },
+  {
+    "brand": "Volvo",
+    "model": "concept coupe",
+    "automatic": false,
+    "roof_rack": false,
+    "price": 600,
+    "booked": false,
+    "seats": 2,
+    "image": "https://s.blogcdn.com/www.engadget.com/media/2013/08/volvo-concept-coupe.png"
+  },
+  {
+    "brand": "Volvo",
+    "model": "P1900",
+    "automatic": false,
+    "roof_rack": false,
+    "price": 600,
+    "booked": false,
+    "seats": 2,
+    "image": "//upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Volvo_P1900_1956_4.jpg/250px-Volvo_P1900_1956_4.jpg"
+  },
+  {
+    "brand": "Volvo",
+    "model": "XC90",
+    "automatic": false,
+    "roof_rack": false,
+    "price": 1200,
+    "booked": false,
+    "seats": 7,
+    "image": "//upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Volvo_XC90_front.JPG/300px-Volvo_XC90_front.JPG"
+  },
+  {
+    "brand": "Tesla",
+    "model": "Roadster",
+    "automatic": true,
+    "roof_rack": false,
+    "price": 600,
+    "booked": false,
+    "seats": 2,
+    "image": "//upload.wikimedia.org/wikipedia/commons/thumb/d/d3/TeslaRoadster-front.jpg/250px-TeslaRoadster-front.jpg"
+  },
+  {
+    "brand": "Tesla",
+    "model": "Model S",
+    "automatic": true,
+    "roof_rack": false,
+    "price": 900,
+    "booked": false,
+    "seats": 5,
+    "image": "//upload.wikimedia.org/wikipedia/commons/thumb/4/42/Blue_Tesla_Model_S_Zoutelande_dunes_Holland.jpg/250px-Blue_Tesla_Model_S_Zoutelande_dunes_Holland.jpg"
+  },
+  {
+    "brand": "Tesla",
+    "model": "Model X",
+    "automatic": true,
+    "roof_rack": false,
+    "price": 1200,
+    "booked": false,
+    "seats": 7,
+    "image": "//upload.wikimedia.org/wikipedia/commons/thumb/8/82/Tesla_Model_X_front_view_%2816042113157%29.jpg/250px-Tesla_Model_X_front_view_%2816042113157%29.jpg"
+  }
+]
+

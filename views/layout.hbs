@@ -1,10 +1,61 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="favicon.ico?v=1.1">
     <title>{{title}}</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+
+  <ul class="nav nav-tabs">
+    <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        / route <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a href="/">GET /</a></li>
+        <li><a href="/signup">GET /signup</a></li>
+      </ul>
+    </li>
+    <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        /users route <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a href="/users">GET /users (list * users)</a></li>
+        <li><a href="/users/insert">GET /users/insert (1 random user)</a></li>
+        <li><a href="/users/delete">GET /users/delete (* users)</a></li>
+        <li class="divider"></li>
+        {{#if loggedin}}<li><a href="/users/logout">GET /users/logout (logout)</a></li>{{/if}}
+      </ul>
+    </li>
+    <li role="presentation" class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        /dummy route <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a href="/cars/dummy/insert">GET /cars/dummy/insert</a></li>
+        <li><a href="/cars/dummy/delete">GET /cars/dummy/delete</a></li>
+      </ul>
+    </li>
+  </ul>
     {{{body}}}
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="javascripts/main.js"></script>
+
+  <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
+  <input type="text" name="daterange">
+  <script>
+    $('input[name="daterange"]').daterangepicker();
+  </script>
   </body>
 </html>
