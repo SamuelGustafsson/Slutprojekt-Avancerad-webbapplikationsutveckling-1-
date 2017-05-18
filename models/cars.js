@@ -11,7 +11,7 @@ let carSchema = new Schema(
             type: String,
             required: true
         },
-        automat: {
+        automatic: {
             type: Boolean,
             required: true,
         },
