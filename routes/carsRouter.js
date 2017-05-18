@@ -34,10 +34,10 @@ carsRouter.route('/:carId')
 
     // Update car by id
     .put((req, res, next) => {
-        Cars.findByIdAndUpdate(req.params.carId, {$set: req.body}, 
+        Cars.findByIdAndUpdate(req.params.carId, { $set: req.body },
 
-        // return the modified document rather than the original. defaults to false
-        {new: true},
+            // return the modified document rather than the original. defaults to false
+            { new: true },
             (err, car) => {
                 if (err) throw err;
                 res.json(car);
@@ -50,6 +50,31 @@ carsRouter.route('/:carId')
             console.log(`Car ${req.params.carId} deleted:`);
             res.send(`Car id: ${req.params.carId} has been deleteted`);
         })
+    });
+
+
+/* dummy routes start */
+carsRouter.route('/dummy/insert')
+    .get((req, res, next) => {
+
+        const json = require("../dummy-cars.json");
+        Cars.create(json, (err, car) => {
+            if (err) throw err;
+            console.log("Dummy cars added from dummy-cars.json");
+            res.redirect("/");
+        });
+
+    });
+
+carsRouter.route('/dummy/delete')
+    .get((req, res, next) => {
+
+        Cars.remove({}, (err, car) => {
+            if (err) throw err;
+            console.log("Remove all dummy cars");
+            res.redirect("/");
+        });
+
     });
 
 module.exports = carsRouter;
