@@ -4,15 +4,26 @@ const mongoose = require('mongoose');
 
 let Cars = require('../models/cars');
 
+// TODO Uncomment this later
+/*
+  middleware: redirect user IF one is NOT logged in
+ (one is unable to access routes after this middleware!)
+*/
+carsRouter.use((req, res, next) => {
+    if (req.isAuthenticated()) return next();
+    res.redirect('/?authError=true');
+});
+
 carsRouter.route('/')
 
     // Display all cars
     .get((req, res, next) => {
         Cars.find({}, (error, cars) => {
             if (error) throw error;
-            res.json(cars);
+            res.render('booking', { cars });
         })
     })
+
     // Add a car
     .post((req, res, next) => {
         Cars.create(req.body, (err, car) => {

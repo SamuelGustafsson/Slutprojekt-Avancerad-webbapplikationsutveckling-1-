@@ -4,6 +4,16 @@ const mongoose = require('mongoose');
 
 let Bookings = require('../models/bookings');
 
+// TODO Uncomment this later
+/*
+  middleware: redirect user IF one is NOT logged in
+ (one is unable to access routes after this middleware!)
+*/
+bookingsRouter.use((req, res, next) => {
+    if (req.isAuthenticated()) return next();
+    res.redirect('/?authError=true');
+});
+
 bookingsRouter.route('/')
 
     // Display all bookings
@@ -36,17 +46,17 @@ bookingsRouter.route('/:reservationId')
 
     // Update reservation by id
     .put((req, res, next) => {
-        Bookings.findByIdAndUpdate(req.params.id, 
-        
-        // Updates the reservation
-        {$set: req.body}, 
+        Bookings.findByIdAndUpdate(req.params.id,
 
-        // return the modified document rather than the original. defaults to false
-        {new: true},
-        (error, reservation) => {
-            if (error) throw error;
-            res.json(reservation)
-        });
+            // Updates the reservation
+            { $set: req.body },
+
+            // return the modified document rather than the original. defaults to false
+            { new: true },
+            (error, reservation) => {
+                if (error) throw error;
+                res.json(reservation)
+            });
     })
 
     // Delete Reservation
@@ -54,6 +64,23 @@ bookingsRouter.route('/:reservationId')
         Bookings.findByIdAndRemove(req.params.reservationId, (error, reservation) => {
             console.info(reservation);
         })
+    })
+
+
+bookingsRouter.route('/car/:carId')
+
+    .post((req, res, next) => {
+        // const reservationData = 
+        // Bookings.create(req.body, (err, reservation) => {
+        //     if (err) throw err;
+        //     res.json(reservation);
+        //     console.log(`Reservation made`)
+        // });
+        console.log(`\n \ttestdata: ${req.body.test}`);
+        console.log(`\n \tcar id ${req.params.carId}`);
+        console.log(`\tUser id: ${req.user._id}`);
+
+        res.send(req.body.test);
     })
 
 

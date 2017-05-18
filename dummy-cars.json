@@ -2,7 +2,7 @@
   {
     "brand": "Volvo",
     "model": "v70",
-    "automat": true,
+    "automatic": true,
     "roof_rack": true,
     "price": 1500,
     "booked": false,
@@ -12,7 +12,7 @@
   {
     "brand": "Ford",
     "model": "Mustang GT500",
-    "automat": false,
+    "automatic": false,
     "roof_rack": false,
     "price": 2300,
     "booked": false,
@@ -22,7 +22,7 @@
   {
     "brand": "Saab",
     "model": "9-5",
-    "automat": false,
+    "automatic": false,
     "roof_rack": true,
     "price": 1300,
     "booked": false,
@@ -32,7 +32,7 @@
   {
     "brand": "Ford",
     "model": "Ka",
-    "automat": false,
+    "automatic": false,
     "roof_rack": false,
     "price": 900,
     "booked": false,
@@ -42,7 +42,7 @@
   {
     "brand": "Buggatti",
     "model": "Veyron super sport",
-    "automat": false,
+    "automatic": false,
     "roof_rack": false,
     "price": 5000,
     "booked": false,
@@ -52,7 +52,7 @@
   {
     "brand": "Volvo",
     "model": "s40",
-    "automat": false,
+    "automatic": false,
     "roof_rack": false,
     "price": 900,
     "booked": false,
@@ -62,7 +62,7 @@
   {
     "brand": "Volvo",
     "model": "concept coupe",
-    "automat": false,
+    "automatic": false,
     "roof_rack": false,
     "price": 600,
     "booked": false,
@@ -72,7 +72,7 @@
   {
     "brand": "Volvo",
     "model": "P1900",
-    "automat": false,
+    "automatic": false,
     "roof_rack": false,
     "price": 600,
     "booked": false,
@@ -82,7 +82,7 @@
   {
     "brand": "Volvo",
     "model": "XC90",
-    "automat": false,
+    "automatic": false,
     "roof_rack": false,
     "price": 1200,
     "booked": false,
@@ -92,7 +92,7 @@
   {
     "brand": "Tesla",
     "model": "Roadster",
-    "automat": true,
+    "automatic": true,
     "roof_rack": false,
     "price": 600,
     "booked": false,
@@ -102,7 +102,7 @@
   {
     "brand": "Tesla",
     "model": "Model S",
-    "automat": true,
+    "automatic": true,
     "roof_rack": false,
     "price": 900,
     "booked": false,
@@ -112,7 +112,7 @@
   {
     "brand": "Tesla",
     "model": "Model X",
-    "automat": true,
+    "automatic": true,
     "roof_rack": false,
     "price": 1200,
     "booked": false,

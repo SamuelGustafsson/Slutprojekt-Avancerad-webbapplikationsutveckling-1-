@@ -11,7 +11,7 @@ const User = require("../models/users");
 
 
 router.post('/login', passport.authenticate('local', { failureRedirect: "/?formError=true" }), (req, res) => {
-  res.redirect('/users');
+  res.redirect('/cars');
 });
 
 router.post('/signup', (req, res) => {
@@ -27,8 +27,6 @@ router.post('/signup', (req, res) => {
     });
   });
 });
-
-
 
 /*
   middleware: redirect user IF one is NOT logged in
@@ -49,18 +47,12 @@ router.get('/', function(req, res, next) {
       usersObj: result
     });
   });
-
 });
 
 router.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/');
 });
-
-
-
-
-
 
 router.get('/insert', function(req, res, next){
   /* ! does not insert a reg. user with a hashed password atm! */

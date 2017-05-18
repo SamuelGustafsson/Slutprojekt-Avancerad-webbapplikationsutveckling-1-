@@ -1,0 +1,41 @@
+<div class="container">
+
+    <div class="cars-container">
+        <h1>Cars</h1>
+        <div class="row">
+            <div class="form-container">
+                <form id="search-form">
+                    <div class="form-group">
+                        <label for="seats">Seats:</label>
+                        <input type="number" class="form-control" id="seats" name="seats" placeholder="seats" value="2">
+                    </div>
+                    <button type="submit" class="btn btn-success pull-right">SEARCH</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+
+            {{#each cars}}
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <img src="{{this.image}}" alt="...">
+                    <div class="caption">
+                        <h3>{{this.brand}} {{this.model}}</h3>
+                        <p>Price: {{this.price}}</p>
+                        <p>Transmisson: {{this.price}}</p>
+                        <p>Seats: {{this.seats}}</p>
+                       {{!-- <p><a href="/bookings/car/{{this._id}" class="btn btn-primary" role="button">Book</a></p> --}}
+                       <form action="/bookings/car/{{this._id}}" method="POST" class="book-form">
+                        <input type="text" name="test" value="123">
+                        <button type="submit" class="btn btn-success pull-right">BOOK</button>
+                       </form>
+
+                        <p><a href="/cars/{{this._id}}" class="btn btn-primary" role="button">Details</a></p>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+<!-- container -->
