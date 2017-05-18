@@ -5,9 +5,10 @@ let router = express.Router();
 /* GET home page. */
 router.get('/', function (req, res, next){
 
+
   const {formError, authError} = req.query;
   res.render('index', {
-    title: 'Bilbokningen - login',
+    title: 'Car Rental Supreme - login',
     formError: formError,
     authError: authError,
   });
