@@ -20,6 +20,7 @@
     "express": "~4.15.2",
     "express-session": "^1.15.2",
     "hbs": "~4.0.1",
+    "jquery-serializetojson": "^1.2.1",
     "mongoose": "^4.9.8",
     "mongoose-type-email": "^1.0.5",
     "morgan": "~1.8.1",

@@ -70,18 +70,25 @@ bookingsRouter.route('/:reservationId')
 bookingsRouter.route('/car/:carId')
 
     .post((req, res, next) => {
-        // const reservationData = 
-        // Bookings.create(req.body, (err, reservation) => {
-        //     if (err) throw err;
-        //     res.json(reservation);
-        //     console.log(`Reservation made`)
-        // });
-        console.log(`\n \ttestdata: ${req.body.test}`);
-        console.log(`\n \tcar id ${req.params.carId}`);
-        console.log(`\tUser id: ${req.user._id}`);
 
-        res.send(req.body.test);
-    })
+      console.log("\n-----booking data----------\n");
+      console.log(`\n \tcar id ${req.params.carId}`);
+      console.log(`\tUser id: ${req.user._id}`);
+      console.log( req.body );
+      console.log("\n---------------\n");
+
+      const reservationData = {
+        car_id: req.params.carId,
+        user_id: req.user._id,
+        date_from: req.body.date_from,
+        date_to: req.body.date_to
+      };
+      Bookings.create(reservationData, (err, reservation) => {
+          if (err) throw err;
+          console.log(`Reservation DONE`);
+          res.send(reservation);
+      });
+    });
 
 
 
