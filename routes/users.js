@@ -23,9 +23,7 @@ router.post('/signup', (req, res) => {
         email: req.body.username,
     }), req.body.password, (error, user) => {
         if (error) return console.log(error);
-        passport.authenticate('local')(req, res, () => {
-            res.redirect('/users');
-        });
+        res.redirect('/');
     });
 });
 
@@ -34,8 +32,8 @@ router.post('/signup', (req, res) => {
  (one is unable to access routes after this middleware!)
 */
 router.use((req, res, next) => {
-    if (req.isAuthenticated()) return next();
-    res.redirect('/?authError=true');
+    // if (req.isAuthenticated()) return next();
+    // res.redirect('/?authError=true');
 });
 
 
@@ -43,7 +41,7 @@ router.get('/', function(req, res, next) {
 
     User.find((err, result) => {
         if (err) { console.log(err); }
-
+        res.send(200);
         res.render('users', {
             usersObj: result
         });
