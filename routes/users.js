@@ -22,7 +22,7 @@ router.post('/signup', (req, res) => {
         password: req.body.password,
         email: req.body.username,
     }), req.body.password, (error, user) => {
-        if (error) return console.log(error);
+        if (error) return res.send(error);
         res.redirect('/');
     });
 });
