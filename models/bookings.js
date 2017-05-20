@@ -1,4 +1,4 @@
-let mongoose = require('../server/db/mongoose'),
+let mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 let bookingSchema = new Schema({

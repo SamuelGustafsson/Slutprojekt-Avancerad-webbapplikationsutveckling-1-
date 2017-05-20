@@ -5,7 +5,7 @@ require('./config.js');
  * Module dependencies.
  */
 
-var app = require('../app');
+var { app } = require('../app');
 var { mongoose } = require('../server/db/mongoose.js');
 var debug = require('debug')('untitled:server');
 var http = require('http');

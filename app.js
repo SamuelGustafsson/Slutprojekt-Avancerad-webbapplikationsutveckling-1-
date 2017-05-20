@@ -12,11 +12,11 @@ let express = require('express'),
 require("./config/mongooseConn");
 require("./config/hbsHelper");
 
-const User = require('./models/users');
+const { User } = require('./models/users');
 
 // Routes
-let index = require('./routes/index');
-let users = require('./routes/users');
+let index = require('./routes/index').router;
+let users = require('./routes/users').router;
 let carsRouter = require('./routes/carsRouter');
 let bookingsRouter = require('./routes/bookingsRouter');
 
@@ -89,4 +89,4 @@ app.use(function(err, req, res, next) {
     res.render('error');
 });
 
-module.exports = app;
+module.exports = { app };

@@ -6,7 +6,8 @@
         "start": "node ./bin/www",
         "debug": "set DEBUG=express:* & npm start",
         "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha tests/*.test.js --colors",
-        "localhost": "export NODE_ENV=localhost || SET \"NODE_ENV=localhost\" & npm start"
+        "localhost": "export NODE_ENV=localhost || SET \"NODE_ENV=localhost\" & npm start",
+        "test-watch": "nodemon --exec 'npm test'"
     },
     "dependencies": {
         "@types/express-session": "0.0.32",
