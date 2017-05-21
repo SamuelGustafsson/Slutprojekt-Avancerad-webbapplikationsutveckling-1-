@@ -23,4 +23,4 @@ router.get('/signup', function(req, res, next) {
     });
 });
 
-module.exports = { router };
+module.exports = router;

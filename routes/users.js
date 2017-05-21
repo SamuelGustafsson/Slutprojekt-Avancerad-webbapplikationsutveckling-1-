@@ -4,7 +4,7 @@ let router = express.Router();
 const passport = require("passport");
 
 const randomstring = require("randomstring");
-const { User } = require("../models/users");
+const User = require("../models/users");
 
 
 
@@ -103,4 +103,4 @@ router.get('/delete', function(req, res, next) {
 
 });
 
-module.exports = { router };
+module.exports = router;

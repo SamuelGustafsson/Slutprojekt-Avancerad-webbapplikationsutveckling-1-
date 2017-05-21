@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
-require('./config.js');
+// require('./config.js');
 /**
  * Module dependencies.
  */
 
-var { app } = require('../app');
-var { mongoose } = require('../server/db/mongoose.js');
+var app = require('../app');
+var mongoose = require('../config/mongooseConn');
 var debug = require('debug')('untitled:server');
 var http = require('http');
 

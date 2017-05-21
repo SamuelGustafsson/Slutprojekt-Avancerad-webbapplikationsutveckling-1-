@@ -1,4 +1,4 @@
-const { mongoose } = require('../config/mongooseConn');
+const mongoose = require('mongoose');
 require('mongoose-type-email');
 let Schema = mongoose.Schema;
 
@@ -33,4 +33,4 @@ userSchema.plugin(passportLocalMongoose, {
 });
 
 let User = mongoose.model('User', userSchema);
-module.exports = { User };
+module.exports = User;

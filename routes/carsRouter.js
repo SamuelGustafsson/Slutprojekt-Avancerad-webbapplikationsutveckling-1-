@@ -19,10 +19,10 @@ carsRouter.route('/')
 // Display all cars
 .get((req, res, next) => {
     Cars.find({}, (error, cars) => {
-        if (error) throw error;
-        res.render('booking', { cars });
-    })
-    res.send(200);
+            if (error) throw error;
+            res.render('booking', { cars });
+        })
+        // res.send(200);
 })
 
 // Add a car

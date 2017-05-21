@@ -1,23 +1,25 @@
 const mongoose = require("mongoose");
-const env = process.env.NODE_ENV;
-let url = "mongodb://admin:admin@ds139791.mlab.com:39791/bilbokning";
+mongoose.Promise = global.Promise;
 
-if (env === "test") {
-    url = "mongodb://admin:admin@ds137121.mlab.com:37121/bilbokning_test";
-} else if (env === "localhost") {
-    url = "mongodb://localhost/bilbokning";
-}
+let env = process.env.NODE_ENV || 'development';
 console.log('\x1b[36m%s\x1b[0m', `\n${env} ENV activated\n`);
 
+if (env === 'development') {
+    process.env.MONGODB_URI = 'mongodb://admin:admin@ds139791.mlab.com:39791/bilbokning';
+} else if (env === 'test') {
+    process.env.MONGODB_URI = 'mongodb://admin:admin@ds137121.mlab.com:37121/bilbokning_test';
+} else if (env === "localhost") {
+    process.env.MONGODB_URI = "mongodb://localhost/bilbokning";
+}
 
+mongoose.connect(process.env.MONGODB_URI);
 
-mongoose.createConnection(url);
 mongoose.connection.on("error", (err) => {
     console.log(err);
 });
-mongoose.connection.on("connected", () => {
-    console.log("connected to mongoose");
-});
-mongoose.Promise = global.Promise;
 
-module.exports = { mongoose };
+mongoose.connection.on('connected', () => {
+    console.log("Connected to database");
+});
+
+module.exports = mongoose;
