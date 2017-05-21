@@ -1,34 +1,35 @@
 const mongoose = require('mongoose');
 require('mongoose-type-email');
-const Schema = mongoose.Schema;
+let Schema = mongoose.Schema;
 
 
 const passportLocalMongoose = require('passport-local-mongoose');
 
-let userSchema = Schema(
-    {
-      username: {
+let userSchema = new Schema({
+    username: {
         type: mongoose.SchemaTypes.Email,
         required: true
-      },
-      password: String,
-      firstname: {
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    firstname: {
         type: String,
         required: true,
-      },
-      lastname: {
+    },
+    lastname: {
         type: String,
         required: true,
-      },
-      email: {
+    },
+    email: {
         type: mongoose.SchemaTypes.Email,
         required: true
-      },
-    }
-);
+    },
+});
 
 userSchema.plugin(passportLocalMongoose, {
-  selectFields: 'username firstname lastname email'
+    selectFields: 'username firstname lastname email'
 });
 
 let User = mongoose.model('User', userSchema);
