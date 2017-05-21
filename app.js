@@ -1,13 +1,12 @@
+let express = require('express'),
+    path = require('path'),
+    favicon = require('serve-favicon'),
+    logger = require('morgan'),
 
-let express   = require('express'),
-path          = require('path'),
-favicon       = require('serve-favicon'),
-logger        = require('morgan'),
-
-passport      = require('passport'),
-session       = require('express-session'),
-bodyParser    = require('body-parser'),
-cookieParser  = require('cookie-parser');
+    passport = require('passport'),
+    session = require('express-session'),
+    bodyParser = require('body-parser'),
+    cookieParser = require('cookie-parser');
 
 
 require("./config/mongooseConn");
@@ -35,9 +34,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
-  secret: "randomString123",
-  resave: true,
-  saveUninitialized: false
+    secret: "randomString123",
+    resave: true,
+    saveUninitialized: false
 }));
 
 // Passport configuration with mongoose
@@ -50,19 +49,19 @@ passport.deserializeUser(User.deserializeUser());
 
 
 //Middleware to check if 'req.user' is set
-app.use((req,res,next) => {
-  console.log("chk user obj exist: ",req.user);
-  next();
+app.use((req, res, next) => {
+    console.log("chk user obj exist: ", req.user);
+    next();
 });
 
 // middleware: set global value(s)
-app.use((req,res,next) => {
-  app.locals.loggedin = false;
+app.use((req, res, next) => {
+    app.locals.loggedin = false;
 
-  if( req.user ){
-    app.locals.loggedin = true;
-  }
-  next();
+    if (req.user) {
+        app.locals.loggedin = true;
+    }
+    next();
 });
 
 app.use('/', index);
@@ -72,21 +71,22 @@ app.use('/bookings', bookingsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  let err = new Error('Not Found');
 
-  err.status = 404;
-  next(err);
+    let err = new Error('Not Found');
+
+    err.status = 404;
+    next(err);
 });
 
 // error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use(function(err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 module.exports = app;

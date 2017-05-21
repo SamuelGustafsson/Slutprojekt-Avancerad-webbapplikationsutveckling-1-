@@ -9,42 +9,43 @@ let Cars = require('../models/cars');
   middleware: redirect user IF one is NOT logged in
  (one is unable to access routes after this middleware!)
 */
-carsRouter.use((req, res, next) => {
-    if (req.isAuthenticated()) return next();
-    res.redirect('/?authError=true');
-});
+// carsRouter.use((req, res, next) => {
+//     if (req.isAuthenticated()) return next();
+//     res.redirect('/?authError=true');
+// });
 
 carsRouter.route('/')
 
-    // Display all cars
-    .get((req, res, next) => {
-        Cars.find({}, (error, cars) => {
+// Display all cars
+.get((req, res, next) => {
+    Cars.find({}, (error, cars) => {
             if (error) throw error;
             res.render('booking', { cars });
         })
-    })
+        // res.send(200);
+})
 
-    // Add a car
-    .post((req, res, next) => {
-        Cars.create(req.body, (err, car) => {
-            if (err) throw err;
-            res.json(car);
-            console.log(`Added: ${req.body.brand} ${req.body.model} to database`);
-        });
-    })
+// Add a car
+.post((req, res, next) => {
+    Cars.create(req.body, (err, car) => {
+        if (err) throw err;
+        res.json(car);
+        console.log(`Added: ${req.body.brand} ${req.body.model} to database`);
+    });
+});
 
 carsRouter.route('/:carId')
 
-    // Get car by id
-    .get((req, res, next) => {
-        Cars.findById(req.params.carId, (error, car) => {
-            if (error) throw error;
-            res.json(car);
-        })
+// Get car by id
+.get((req, res, next) => {
+    Cars.findById(req.params.carId, (error, car) => {
+        if (error) throw error;
+        res.json(car);
     })
+})
 
-    // Update car by id
-    .put((req, res, next) => {
+// Update car by id
+.put((req, res, next) => {
         Cars.findByIdAndUpdate(req.params.carId, { $set: req.body },
 
             // return the modified document rather than the original. defaults to false
@@ -89,4 +90,3 @@ carsRouter.route('/dummy/delete')
     });
 
 module.exports = carsRouter;
-
