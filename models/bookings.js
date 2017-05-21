@@ -4,12 +4,10 @@ let mongoose = require('mongoose'),
 let bookingSchema = new Schema({
     car_id: {
         type: String,
-        unique: true,
         required: true
     },
     user_id: {
         type: String,
-        unique: true,
         required: true
     },
     date_from: {
@@ -25,5 +23,9 @@ let bookingSchema = new Schema({
     timestamps: true
 });
 
+// http://stackoverflow.com/questions/12573753/creating-multifield-indexes-in-mongoose-mongodb
+bookingSchema.index({car_id: 1, user_id: 1}, {unique: true});
+
 let Bookings = mongoose.model('Booking', bookingSchema);
 module.exports = Bookings;
+
