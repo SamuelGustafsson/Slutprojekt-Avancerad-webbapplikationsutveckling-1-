@@ -40,6 +40,8 @@
       </a>
       <ul class="dropdown-menu">
         <li><a href="/cars">GET /cars (list * available cars)</a></li>
+        <li class="divider"></li>
+        <li><a href="/reservation">GET /reservation</a></li>
       </ul>
     </li>
 
@@ -50,12 +52,16 @@
       <ul class="dropdown-menu">
         <li><a href="/cars/dummy/insert">GET /cars/dummy/insert</a></li>
         <li><a href="/cars/dummy/delete">GET /cars/dummy/delete</a></li>
+        <li class="divider"></li>
+        <li><a href="/bookings/dummy/delete">GET /bookings/dummy/delete</a></li>
       </ul>
     </li>
   </ul>
-    {{{body}}}
 
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="crossorigin="anonymous"></script>
+  {{{body}}}
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="crossorigin="anonymous"></script>
     <script src="jquery.serializeToJSON.js" type="text/javascript" ></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="javascripts/main.js"></script>
@@ -63,5 +69,7 @@
   <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
   <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
+
   </body>
 </html>

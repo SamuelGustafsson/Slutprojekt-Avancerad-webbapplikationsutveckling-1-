@@ -6,6 +6,25 @@ const passport = require("passport");
 const randomstring = require("randomstring");
 const User = require("../models/users");
 
+/*const Bookings = require("../models/bookings");
+const Cars = require("../models/cars");
+
+router.get('/reservation', function(req, res, next){
+
+  Bookings.find({user_id: req.user._id})
+    .select("-_id car_id")
+    .exec((err, booking) => {
+
+      const car_idArray = booking.map(obj => obj.car_id);
+      Cars.find()
+        .where('_id')
+        .in(car_idArray)
+        .exec((err, cars) => {
+          console.log(cars);
+          res.render('reservation',{ usersObj: cars});
+        });
+    })
+});*/
 
 
 
@@ -32,8 +51,8 @@ router.post('/signup', (req, res) => {
  (one is unable to access routes after this middleware!)
 */
 router.use((req, res, next) => {
-    // if (req.isAuthenticated()) return next();
-    // res.redirect('/?authError=true');
+  if (req.isAuthenticated()) return next();
+  return res.redirect('/?authError=true');
 });
 
 
@@ -102,5 +121,7 @@ router.get('/delete', function(req, res, next) {
     });
 
 });
+
+
 
 module.exports = router;
