@@ -27,21 +27,6 @@ router.get('/signup', function(req, res, next) {
 });
 
 
-router.get('/reservation', function(req, res, next){
 
-  Bookings.find({user_id: req.user._id})
-    .select("-_id car_id")
-    .exec((err, booking) => {
-
-      const car_idArray = booking.map(obj => obj.car_id);
-      Cars.find()
-        .where('_id')
-        .in(car_idArray)
-        .exec((err, cars) => {
-          console.log(cars);
-          res.render('reservation',{ usersObj: cars});
-        });
-    })
-});
 
 module.exports = router;

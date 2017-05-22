@@ -6,25 +6,10 @@ const passport = require("passport");
 const randomstring = require("randomstring");
 const User = require("../models/users");
 
-/*const Bookings = require("../models/bookings");
+const Bookings = require("../models/bookings");
 const Cars = require("../models/cars");
 
-router.get('/reservation', function(req, res, next){
 
-  Bookings.find({user_id: req.user._id})
-    .select("-_id car_id")
-    .exec((err, booking) => {
-
-      const car_idArray = booking.map(obj => obj.car_id);
-      Cars.find()
-        .where('_id')
-        .in(car_idArray)
-        .exec((err, cars) => {
-          console.log(cars);
-          res.render('reservation',{ usersObj: cars});
-        });
-    })
-});*/
 
 
 
@@ -60,11 +45,28 @@ router.get('/', function(req, res, next) {
 
     User.find((err, result) => {
         if (err) { console.log(err); }
-        res.send(200);
+        //res.send(200);
         res.render('users', {
             usersObj: result
         });
     });
+});
+
+router.get('/reservation', function(req, res, next){
+
+  Bookings.find({user_id: req.user._id})
+    .select("-_id car_id")
+    .exec((err, booking) => {
+
+      const car_idArray = booking.map(obj => obj.car_id);
+      Cars.find()
+        .where('_id')
+        .in(car_idArray)
+        .exec((err, cars) => {
+          console.log(cars);
+          res.render('reservation',{ usersObj: cars});
+        });
+    })
 });
 
 router.get('/logout', (req, res) => {

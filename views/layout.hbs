@@ -30,6 +30,8 @@
         <li><a href="/users/insert">GET /users/insert (1 random user)</a></li>
         <li><a href="/users/delete">GET /users/delete (* users)</a></li>
         <li class="divider"></li>
+        <li><a href="/users/reservation">GET /users/reservation</a></li>
+        <li class="divider"></li>
         {{#if loggedin}}<li><a href="/users/logout">GET /users/logout (logout)</a></li>{{/if}}
       </ul>
     </li>
@@ -40,8 +42,6 @@
       </a>
       <ul class="dropdown-menu">
         <li><a href="/cars">GET /cars (list * available cars)</a></li>
-        <li class="divider"></li>
-        <li><a href="/reservation">GET /reservation</a></li>
       </ul>
     </li>
 
@@ -62,9 +62,9 @@
 
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="crossorigin="anonymous"></script>
-    <script src="jquery.serializeToJSON.js" type="text/javascript" ></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="javascripts/main.js"></script>
+  <script src="/jquery.serializeToJSON.js" type="text/javascript" ></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="/javascripts/main.js"></script>
 
   <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
   <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
