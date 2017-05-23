@@ -13,24 +13,19 @@
 * `npm run test` - test mode (mocha)
 * `npm run localhost` - normal mode + localhost DB mode
 
-###Konto MLAB.com
+### Konto MLAB.com
 URL: https://mlab.com/
 (Här kan man enkelt få en översikt på de kollektioner som finns i databasen)
 Användarnamn: samuelgustafsson 
 Lösenord: eFVjr43vLe4B
 
-###Användaruppgifter för båda databaserna:
+### Användaruppgifter för båda databaserna:
 Användarnamn: admin
 Lösenord: admin
 
-##Project management software
+## Project management software
 Wrike.com
 URL: https://www.wrike.com/workspace.htm
-
-Github repo: 
-URL: https://github.com/SamuelGustafsson/Slutprojekt-Avancerad-webbapplikationsutveckling-1-
-
-<pre>git clone https://github.com/SamuelGustafsson/Slutprojekt-Avancerad-webbapplikationsutveckling-1-.git</pre>
 
 `          | Links                                              |
 ---------- | -------------------------------------------------- |
