@@ -52,9 +52,27 @@ router.get('/', function (req, res, next) {
     });
 });
 
-router.get('/reservation', function (req, res, next) {
+router.get('/reservation', function (req, res, next){
 
-    Bookings.find({ user_id: req.user._id })
+  Bookings.aggregate([
+      {
+        $match: {
+          user_id: req.user._id
+        }
+      },
+      {
+        $lookup: {
+          from: "cars",
+          localField: "car_id",
+          foreignField: "_id",
+          as: "carobj"
+        }
+      }
+  ]).exec((err, usersObj) => {
+    res.render('reservation', { usersObj });
+  })
+
+/*    Bookings.find({ user_id: req.user._id })
         .populate({
             path: 'car_id',
             model: 'Car'
@@ -62,7 +80,7 @@ router.get('/reservation', function (req, res, next) {
         .exec((err, usersObj) => {
             // console.info(usersObj);
             res.render('reservation', { usersObj });
-        });
+        });*/
 
     // Bookings.find({ user_id: req.user._id })
     //     .select("-_id car_id date_to date_from")
