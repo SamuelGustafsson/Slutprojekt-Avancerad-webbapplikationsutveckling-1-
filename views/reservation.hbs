@@ -8,27 +8,27 @@
 
     <table class="table">
       <thead>
-      <tr>
-        <th>#</th>
-        <th>Car</th>
-        <th>Pick date</th>
-        <th>Return date</th>
-        <th>Cancel</th>
-      </tr>
+        <tr>
+          <th>#</th>
+          <th>Brand</th>
+          <th>Pick date</th>
+          <th>Return date</th>
+          <th>Cancel</th>
+        </tr>
       </thead>
       <tbody>
-      {{#each usersObj}}
+        {{#each usersObj}}
         <tr>
-          <th>{{@index}}</th>
-          <th>{{this.brand}} {{this.model}}</th>
-          <th>{{this.date_from}}</th>
-          <th>{{this.date_to}}</th>
-          <th><a href="#" class="btn btn-danger">Cancel</a></th>
+          <td>{{@index}}</td>
+          <td>{{#each this.car_id}} {{this.brand}} {{/each}}</td>
+          <td>{{localDate this.date_from}}</td>
+          <td>{{localDate this.date_to}}</td>
+          <td><a href="#" class="btn btn-danger">Cancel</a></td>
         </tr>
-      {{/each}}
+        {{/each}}
       </tbody>
     </table>
   </div>
 
-</div> <!-- container -->
-
+</div>
+<!-- container -->

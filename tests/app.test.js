@@ -40,9 +40,7 @@
 //         expect(data.email).toBeA("string");
 //         expect(data.password).toBe(json[0].password);
 //         expect(data.password).toBeA("number");
-
 //       })
 //       .end(done)
 //   });
-
 // });

@@ -36,12 +36,12 @@ router.post('/signup', (req, res) => {
  (one is unable to access routes after this middleware!)
 */
 router.use((req, res, next) => {
-  if (req.isAuthenticated()) return next();
-  return res.redirect('/?authError=true');
+    if (req.isAuthenticated()) return next();
+    return res.redirect('/?authError=true');
 });
 
 
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
 
     User.find((err, result) => {
         if (err) { console.log(err); }
@@ -52,29 +52,41 @@ router.get('/', function(req, res, next) {
     });
 });
 
-router.get('/reservation', function(req, res, next){
+router.get('/reservation', function (req, res, next) {
 
-  Bookings.find({user_id: req.user._id})
-    .select("-_id car_id")
-    .exec((err, booking) => {
-
-      const car_idArray = booking.map(obj => obj.car_id);
-      Cars.find()
-        .where('_id')
-        .in(car_idArray)
-        .exec((err, cars) => {
-          console.log(cars);
-          res.render('reservation',{ usersObj: cars});
+    Bookings.find({ user_id: req.user._id })
+        .populate({
+            path: 'car_id',
+            model: 'Car'
+        })
+        .exec((err, usersObj) => {
+            // console.info(usersObj);
+            res.render('reservation', { usersObj });
         });
-    })
+
+    // Bookings.find({ user_id: req.user._id })
+    //     .select("-_id car_id date_to date_from")
+    //     .exec((err, booking) => {
+    //         console.info(booking);
+    //         const car_idArray = booking.map(obj => obj.car_id);
+
+    //         Cars.find()
+    //             .where('_id')
+    //             .in(car_idArray)
+    //             .exec((err, cars) => {
+    //                 console.log(cars);
+    //                 res.render('reservation', { usersObj: cars });
+    //             });
+    //     })
 });
+
 
 router.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/');
 });
 
-router.get('/insert', function(req, res, next) {
+router.get('/insert', function (req, res, next) {
     /* ! does not insert a reg. user with a hashed password atm! */
 
     let firstname = randomstring.generate({
@@ -95,7 +107,7 @@ router.get('/insert', function(req, res, next) {
         username: `${firstname}@test.com`,
     });
 
-    user.save(function(err) {
+    user.save(function (err) {
         if (err) return console.log(err);
 
         res.redirect("/users");
@@ -105,7 +117,7 @@ router.get('/insert', function(req, res, next) {
 });
 
 
-router.get('/delete/:id', function(req, res, next) {
+router.get('/delete/:id', function (req, res, next) {
 
     const { id } = req.params;
     User.remove({ _id: id }, (err) => {
@@ -115,7 +127,7 @@ router.get('/delete/:id', function(req, res, next) {
 
 });
 
-router.get('/delete', function(req, res, next) {
+router.get('/delete', function (req, res, next) {
 
     User.remove({}, (err) => {
         if (err) { return console.log(err); }
