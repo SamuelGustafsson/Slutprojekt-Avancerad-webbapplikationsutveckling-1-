@@ -18,11 +18,34 @@ carsRouter.route('/')
 
 // Display all cars
 .get((req, res, next) => {
-    Cars.find({}, (error, cars) => {
+
+  let seats = req.query.seats || 7;
+  let price = req.query.price || 2000;
+  let brand = req.query.brand || "";
+
+  Cars.find({
+    booked: false,
+    seats: { $gte: 0, $lte: seats },
+    price: { $gte: 0, $lte: price },
+    brand: {
+      $regex: new RegExp(brand, "gi")
+    }
+  }, (error, cars) => {
+    if (error) throw error;
+    res.render('booking',{
+      cars,
+      searchFormData: {seats, price, brand}
+    });
+  })
+
+/*    Cars.find({
+      booked: false
+    }, (error, cars) => {
             if (error) throw error;
-            res.render('booking', { cars });
-        })
-        // res.send(200);
+            res.render('booking',{
+              cars
+            });
+        })*/
 })
 
 // Add a car
@@ -64,6 +87,32 @@ carsRouter.route('/:carId')
         })
     });
 
+
+
+/* cars filter ajax fn */
+carsRouter.route('/filter')
+  .post((req, res, next) => {
+
+    let seats = req.body.seats || 7;
+    let price = req.body.price || 2000;
+    let brand = req.body.brand || "";
+
+    Cars.find({
+      booked: false,
+      seats: { $gte: 0, $lte: seats },
+      price: { $gte: 0, $lte: price },
+      brand: {
+        $regex: new RegExp(brand, "gi")
+      }
+    }, (error, cars) => {
+      if (error) throw error;
+      res.send({
+        cars,
+      });
+    });
+
+
+  });
 
 /* dummy routes start */
 carsRouter.route('/dummy/insert')

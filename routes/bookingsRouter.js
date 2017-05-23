@@ -3,6 +3,7 @@ const bookingsRouter = express.Router();
 const mongoose = require('mongoose');
 
 let Bookings = require('../models/bookings');
+let Cars = require('../models/cars');
 
 // TODO Uncomment this later
 /*
@@ -11,7 +12,7 @@ let Bookings = require('../models/bookings');
 */
 bookingsRouter.use((req, res, next) => {
     if (req.isAuthenticated()) return next();
-    res.redirect('/?authError=true');
+    return res.redirect('/?authError=true');
 });
 
 bookingsRouter.route('/')
@@ -83,13 +84,28 @@ bookingsRouter.route('/car/:carId')
         date_from: req.body.date_from,
         date_to: req.body.date_to
       };
-      Bookings.create(reservationData, (err, reservation) => {
-          if (err) throw err;
-          console.log(`Reservation DONE`);
-          res.send(reservation);
+
+      Cars.findByIdAndUpdate(reservationData.car_id, { $set: {booked: true} }, { new: true } ).then((car) => {
+        return Bookings.create(reservationData);
+      }).then((reservation) => {
+        res.send(reservation);
+      }).catch((e) => {
+        console.log("Unable to insert your bookings request", e);
       });
+
     });
 
 
+/* dummy route: delete every booking req */
+bookingsRouter.route('/dummy/delete')
+  .get((req, res, next) => {
+
+    Bookings.remove({}, (err, car) => {
+      if (err) throw err;
+      console.log("Remove all dummy bookings");
+      res.redirect("/");
+    });
+
+  });
 
 module.exports = bookingsRouter;

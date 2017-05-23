@@ -8,6 +8,10 @@ a {
 }
 
 
+
+.bookAlertBox{
+  display: none;
+}
 /* hide the input fields */
 input[name='date_from'],
 input[name='date_to']{
