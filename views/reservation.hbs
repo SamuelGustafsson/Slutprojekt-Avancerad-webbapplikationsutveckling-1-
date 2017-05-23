@@ -23,7 +23,11 @@
           <td>{{#each this.car_id}} {{this.brand}} {{/each}}</td>
           <td>{{localDate this.date_from}}</td>
           <td>{{localDate this.date_to}}</td>
-          <td><a href="#" class="btn btn-danger">Cancel</a></td>
+          <td>
+            <form action="/bookings/{{this._id}}" method="POST">
+              <button type="submit" class="btn btn-danger">Cancel</button>
+            </form>
+          </td>
         </tr>
         {{/each}}
       </tbody>

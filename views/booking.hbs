@@ -43,7 +43,7 @@
                         <h3>{{this.brand}}</h3>
                         <p>Model: {{this.model}}</p>
                         <p>Price: {{this.price}}</p>
-                        <p>Transmisson: {{this.price}}</p>
+                        <p>Transmisson: {{setTransmissionType this.automatic}}</p>
                         <p>Seats: {{this.seats}}</p>
                        <form action="/bookings/car/{{this._id}}" method="POST" class="book-form">
                         <button type="submit" class="btn btn-success pull-right">BOOK</button>

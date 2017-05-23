@@ -67,45 +67,71 @@ bookingsRouter.route('/:reservationId')
         })
     })
 
+    // Cancel reservation
+    .post((req, res, next) => {
+
+        const bookingsId = req.params.reservationId;
+
+        Bookings.findByIdAndRemove(bookingsId).then( (reservationObj) => {
+            const car_id = reservationObj.car_id;
+            return Cars.findByIdAndUpdate(car_id, { $set: { booked: false } }, { new: true });
+        }).then((updatedCarObj) => {
+            res.redirect('back');
+        })
+
+        // Cars.findByIdAndUpdate(req.params.reservationId, { $set: { booked: false } }, { new: true }).then((car) => {
+        //     return Bookings.create(req.params.reservationId);
+        // }).then((reservation) => {
+        //     res.send(reservation);
+        // }).catch((e) => {
+        //     console.log("Unable to insert your bookings request", e);
+        // });
+
+        // Bookings.findByIdAndRemove(req.params.reservationId, (error, reservation) => {
+        //     console.info(reservation);
+        //     res.redirect('back');
+        // })
+    })
+
 
 bookingsRouter.route('/car/:carId')
 
     .post((req, res, next) => {
 
-      console.log("\n-----booking data----------\n");
-      console.log(`\n \tcar id ${req.params.carId}`);
-      console.log(`\tUser id: ${req.user._id}`);
-      console.log( req.body );
-      console.log("\n---------------\n");
+        console.log("\n-----booking data----------\n");
+        console.log(`\n \tcar id ${req.params.carId}`);
+        console.log(`\tUser id: ${req.user._id}`);
+        console.log(req.body);
+        console.log("\n---------------\n");
 
-      const reservationData = {
-        car_id: req.params.carId,
-        user_id: req.user._id,
-        date_from: req.body.date_from,
-        date_to: req.body.date_to
-      };
+        const reservationData = {
+            car_id: req.params.carId,
+            user_id: req.user._id,
+            date_from: req.body.date_from,
+            date_to: req.body.date_to
+        };
 
-      Cars.findByIdAndUpdate(reservationData.car_id, { $set: {booked: true} }, { new: true } ).then((car) => {
-        return Bookings.create(reservationData);
-      }).then((reservation) => {
-        res.send(reservation);
-      }).catch((e) => {
-        console.log("Unable to insert your bookings request", e);
-      });
+        Cars.findByIdAndUpdate(reservationData.car_id, { $set: { booked: true } }, { new: true }).then((car) => {
+            return Bookings.create(reservationData);
+        }).then((reservation) => {
+            res.send(reservation);
+        }).catch((e) => {
+            console.log("Unable to insert your bookings request", e);
+        });
 
     });
 
 
 /* dummy route: delete every booking req */
 bookingsRouter.route('/dummy/delete')
-  .get((req, res, next) => {
+    .get((req, res, next) => {
 
-    Bookings.remove({}, (err, car) => {
-      if (err) throw err;
-      console.log("Remove all dummy bookings");
-      res.redirect("/");
+        Bookings.remove({}, (err, car) => {
+            if (err) throw err;
+            console.log("Remove all dummy bookings");
+            res.redirect("/");
+        });
+
     });
-
-  });
 
 module.exports = bookingsRouter;
