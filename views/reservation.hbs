@@ -6,23 +6,23 @@
       <p>List all reservations for this user</p>
     </div>
 
-    <table class="table">
+    <table class="table table-hover">
       <thead>
         <tr>
-          <th>#</th>
           <th>Brand</th>
           <th>Pick date</th>
           <th>Return date</th>
+          <th>Total price</th>
           <th>Cancel</th>
         </tr>
       </thead>
       <tbody>
         {{#each usersObj}}
         <tr>
-          <td>{{@index}}</td>
           <td>{{#each this.car_id}} {{this.brand}} {{/each}}</td>
           <td>{{localDate this.date_from}}</td>
           <td>{{localDate this.date_to}}</td>
+          <td>{{totalPrice this.date_from this.date_to this.car_id.price}}</td>
           <td>
             <form action="/bookings/{{this._id}}" method="POST">
               <button type="submit" class="btn btn-danger">Cancel</button>

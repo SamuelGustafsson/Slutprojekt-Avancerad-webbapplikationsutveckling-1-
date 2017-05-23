@@ -1,4 +1,5 @@
 let hbs = require('hbs');
+let moment = require('moment');
 
 hbs.registerHelper({
   sum: function (items, options) {
@@ -20,5 +21,14 @@ hbs.registerHelper({
       result = 'Manual';
     }
     return result;
+  },
+  totalPrice: function (date_from, date_to, daily_price, options) {
+    let start_date = moment(date_from);
+    let return_date = moment(date_to);
+    let days = return_date.diff(start_date, 'days') // 1
+
+    const totalprice = days * daily_price;
+    return totalprice + " SEK";
   }
+
 });
