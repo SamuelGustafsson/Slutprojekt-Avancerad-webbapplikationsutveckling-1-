@@ -59,6 +59,9 @@ app.use((req, res, next) => {
 app.use((req, res, next) => {
     app.locals.loggedin = false;
 
+// let env = process.env.NODE_ENV;
+app.locals.dev = false;
+
     if (req.user) {
         app.locals.loggedin = true;
     }
