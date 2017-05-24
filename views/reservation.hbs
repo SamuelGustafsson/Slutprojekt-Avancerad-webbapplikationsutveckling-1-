@@ -5,7 +5,6 @@
     <div class="panel-body">
       <p>List all reservations for this user</p>
     </div>
-
     <table class="table table-hover">
       <thead>
         <tr>
@@ -13,16 +12,18 @@
           <th>Pick date</th>
           <th>Return date</th>
           <th>Total price</th>
+          <th>Email</th>
           <th>Cancel</th>
         </tr>
       </thead>
       <tbody>
         {{#each usersObj}}
         <tr>
-          <td>{{#each this.carobj}} {{this.brand}} {{/each}}</td>
+          <td>{{this.car_obj.0.brand}}</td>
           <td>{{localDate this.date_from}}</td>
           <td>{{localDate this.date_to}}</td>
-          <td>{{totalPrice this.date_from this.date_to this.carobj.0.price}}</td>
+          <td>{{totalPrice this.date_from this.date_to this.car_obj.0.price}}</td>
+          <td>{{ this.user_obj.0.email}}</td>
           <td>
             <form action="/bookings/{{this._id}}" method="POST">
               <button type="submit" class="btn btn-danger">Cancel</button>

@@ -13,8 +13,9 @@
 * Car filter functionality made with AJAX and libary jquery-serializetojson (Works without as well).
 * Book functionality with ajax and libary jquery-serializetojson (CRUD).
 * Project wireframing.
-* Reservation route with cancel functionality and db aggregation with populate. 
-* Custom handlebars helper functions for date formating, reservation total price, car transmission type.    
+* Reservation route with cancel functionality and db aggregation with populate (Replaced with db aggregate, read bullet point 7 DB aggregation). 
+* Custom handlebars helper functions for date formating, reservation total price, car transmission type. 
+* DB aggregation /users/reservation. We used $lookup to combine all the database collections (Cars, Users, Bookings).
 
 ## Mats
 * Handlebars helper functions boilerplate.
