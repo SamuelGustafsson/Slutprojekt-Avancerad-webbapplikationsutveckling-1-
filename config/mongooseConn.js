@@ -1,17 +1,14 @@
 const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 
-let env = process.env.NODE_ENV || 'development';
-console.log('\x1b[36m%s\x1b[0m', `\n${env} ENV activated\n`);
+let env = process.env.NODE_ENV;
 
-if (env === 'development') {
-    process.env.PORT = 3000;
-    process.env.MONGODB_URI = 'mongodb://admin:admin@ds139791.mlab.com:39791/bilbokning';
-} else if (env === 'test') {
-    process.env.PORT = 3000;
+console.log('\x1b[36m%s\x1b[0m', `\n${env} ENV activated\n`);
+process.env.MONGODB_URI = 'mongodb://admin:admin@ds139791.mlab.com:39791/bilbokning';
+
+if (env === 'test') {
     process.env.MONGODB_URI = 'mongodb://admin:admin@ds137121.mlab.com:37121/bilbokning_test';
-} else if (env === "localhost"){
-    process.env.PORT = 3000;
+} else if (env === "localhost") {
     process.env.MONGODB_URI = "mongodb://localhost/bilbokning";
 }
 
