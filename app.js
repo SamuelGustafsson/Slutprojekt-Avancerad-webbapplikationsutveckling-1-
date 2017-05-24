@@ -57,15 +57,21 @@ app.use((req, res, next) => {
 
 // middleware: set global value(s)
 app.use((req, res, next) => {
-    app.locals.loggedin = false;
 
-// let env = process.env.NODE_ENV;
-app.locals.dev = false;
+  let devValue = true;
+  let env = process.env.NODE_ENV;
+  if( env === "localhost" ){
+    devValue = true;
+  }
+  // true equals "show dummy navbar AND hide the prod. navbar
+  // false equals "hide dummy navbar AND show the prod. navbar
+  app.locals.dev = devValue;
 
-    if (req.user) {
-        app.locals.loggedin = true;
-    }
-    next();
+  app.locals.loggedin = false;
+  if(req.user){
+      app.locals.loggedin = true;
+  }
+  next();
 });
 
 app.use('/', index);

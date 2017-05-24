@@ -1,13 +1,14 @@
 let mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+    Schema = mongoose.Schema,
+    ObjectId = Schema.ObjectId;
 
 let bookingSchema = new Schema({
     car_id: {
-        type: String,
+        type: ObjectId,
         required: true
     },
     user_id: {
-        type: String,
+        type: ObjectId,
         required: true
     },
     date_from: {
