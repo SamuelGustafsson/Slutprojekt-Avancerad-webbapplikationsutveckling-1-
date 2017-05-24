@@ -58,7 +58,7 @@ app.use((req, res, next) => {
 // middleware: set global value(s)
 app.use((req, res, next) => {
 
-  let devValue = true;
+  let devValue = false;
   let env = process.env.NODE_ENV;
   if( env === "localhost" ){
     devValue = true;

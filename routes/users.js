@@ -10,10 +10,6 @@ const Bookings = require("../models/bookings");
 const Cars = require("../models/cars");
 
 
-
-
-
-
 router.post('/login', passport.authenticate('local', { failureRedirect: "/?formError=true" }), (req, res) => {
     res.redirect('/cars');
 });
@@ -65,37 +61,20 @@ router.get('/reservation', function (req, res, next){
           from: "cars",
           localField: "car_id",
           foreignField: "_id",
-          as: "carobj"
+          as: "car_obj"
+        }
+      },
+      {
+        $lookup: {
+          from: "users",
+          localField: "user_id",
+          foreignField: "_id",
+          as: "user_obj"
         }
       }
   ]).exec((err, usersObj) => {
     res.render('reservation', { usersObj });
   })
-
-/*    Bookings.find({ user_id: req.user._id })
-        .populate({
-            path: 'car_id',
-            model: 'Car'
-        })
-        .exec((err, usersObj) => {
-            // console.info(usersObj);
-            res.render('reservation', { usersObj });
-        });*/
-
-    // Bookings.find({ user_id: req.user._id })
-    //     .select("-_id car_id date_to date_from")
-    //     .exec((err, booking) => {
-    //         console.info(booking);
-    //         const car_idArray = booking.map(obj => obj.car_id);
-
-    //         Cars.find()
-    //             .where('_id')
-    //             .in(car_idArray)
-    //             .exec((err, cars) => {
-    //                 console.log(cars);
-    //                 res.render('reservation', { usersObj: cars });
-    //             });
-    //     })
 });
 
 
@@ -129,11 +108,8 @@ router.get('/insert', function (req, res, next) {
         if (err) return console.log(err);
 
         res.redirect("/users");
-
     });
-
 });
-
 
 router.get('/delete/:id', function (req, res, next) {
 
@@ -142,7 +118,6 @@ router.get('/delete/:id', function (req, res, next) {
         if (err) { return console.log(err); }
         res.redirect("/users");
     });
-
 });
 
 router.get('/delete', function (req, res, next) {
@@ -151,7 +126,6 @@ router.get('/delete', function (req, res, next) {
         if (err) { return console.log(err); }
         res.redirect("/users");
     });
-
 });
 
 
