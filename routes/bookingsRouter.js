@@ -32,7 +32,7 @@ bookingsRouter.route('/')
             res.json(reservation);
             console.log(`Reservation made`)
         });
-    })
+    });
 
 bookingsRouter.route('/:reservationId')
 
