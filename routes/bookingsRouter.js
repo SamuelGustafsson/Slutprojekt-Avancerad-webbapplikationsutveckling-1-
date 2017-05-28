@@ -91,7 +91,7 @@ bookingsRouter.route('/:reservationId')
         //     console.info(reservation);
         //     res.redirect('back');
         // })
-    })
+    });
 
 
 bookingsRouter.route('/car/:carId')

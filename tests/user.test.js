@@ -1,23 +1,25 @@
-// const expect = require('expect');
-// const request = require('supertest');
-// const { ObjectID } = require('mongodb');
-//
-// const { app } = require('../bin/www');
-// const User = require('../models/users');
-//
-// const agent = request.agent(app);
-//
-// const userData = {
-//     _id: new ObjectID(),
-//     username: 'jaso2nscott@gmail.com',
-//     firstname: 'Jason',
-//     lastname: 'Scott',
-//     email: 'dev.jason.scott@gmail.com',
-//     password: 'test123',
-//     __v: 0
-// };
-//
-// beforeEach((done) => {
+const expect = require('expect');
+const request = require('supertest');
+const { ObjectID } = require('mongodb');
+
+const { app } = require('../bin/www');
+const User = require('../models/users');
+
+const agent = request.agent(app);
+
+const userData = {
+    _id: new ObjectID(),
+    username: 'jaso2nscott@gmail.com',
+    firstname: 'Jason',
+    lastname: 'Scott',
+    email: 'dev.jason.scott@gmail.com',
+    password: 'test123',
+    __v: 0
+};
+
+module.exports = {userData};
+
+// before((done) => {
 //     User.remove({}).then(() => {
 //         agent
 //             .post('/users/signup')
