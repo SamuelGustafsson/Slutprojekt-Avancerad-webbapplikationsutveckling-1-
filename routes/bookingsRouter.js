@@ -32,7 +32,7 @@ bookingsRouter.route('/')
             res.json(reservation);
             console.log(`Reservation made`)
         });
-    })
+    });
 
 bookingsRouter.route('/:reservationId')
 
@@ -91,7 +91,7 @@ bookingsRouter.route('/:reservationId')
         //     console.info(reservation);
         //     res.redirect('back');
         // })
-    })
+    });
 
 
 bookingsRouter.route('/car/:carId')

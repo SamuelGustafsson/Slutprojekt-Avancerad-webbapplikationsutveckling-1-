@@ -19,24 +19,25 @@ carsRouter.route('/')
 // Display all cars
 .get((req, res, next) => {
 
-  let seats = req.query.seats || 7;
-  let price = req.query.price || 2000;
-  let brand = req.query.brand || "";
+    let seats = req.query.seats || 7;
+    let price = req.query.price || 2000;
+    let brand = req.query.brand || "";
 
-  Cars.find({
-    booked: false,
-    seats: { $gte: 0, $lte: seats },
-    price: { $gte: 0, $lte: price },
-    brand: {
-      $regex: new RegExp(brand, "gi")
-    }
-  }, (error, cars) => {
-    if (error) throw error;
-    res.render('booking',{
-      cars,
-      searchFormData: {seats, price, brand}
+    Cars.find({
+        booked: false,
+        seats: {$gte: 0, $lte: seats},
+        price: {$gte: 0, $lte: price},
+        brand: {
+            $regex: new RegExp(brand, "gi")
+        }
+    }, (error, cars) => {
+        if (error) throw error;
+        res.render('booking', {
+            cars,
+            searchFormData: {seats, price, brand}
+        });
     });
-  })
+});
 
 /*    Cars.find({
       booked: false
@@ -46,16 +47,16 @@ carsRouter.route('/')
               cars
             });
         })*/
-})
+// })
 
 // Add a car
-.post((req, res, next) => {
-    Cars.create(req.body, (err, car) => {
-        if (err) throw err;
-        res.json(car);
-        console.log(`Added: ${req.body.brand} ${req.body.model} to database`);
-    });
-});
+// .post((req, res, next) => {
+//     Cars.create(req.body, (err, car) => {
+//         if (err) throw err;
+//         res.json(car);
+//         console.log(`Added: ${req.body.brand} ${req.body.model} to database`);
+//     });
+// });
 
 carsRouter.route('/:carId')
 
@@ -64,7 +65,7 @@ carsRouter.route('/:carId')
     Cars.findById(req.params.carId, (error, car) => {
         if (error) throw error;
         res.json(car);
-    })
+    });
 })
 
 // Update car by id

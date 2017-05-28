@@ -118,6 +118,56 @@
     "booked": false,
     "seats": 7,
     "image": "//upload.wikimedia.org/wikipedia/commons/thumb/8/82/Tesla_Model_X_front_view_%2816042113157%29.jpg/250px-Tesla_Model_X_front_view_%2816042113157%29.jpg"
+  },
+  {
+    "brand": "Smart",
+    "model": "Pure Coupe",
+    "automatic": false,
+    "roof_rack": false,
+    "price": 500,
+    "booked": false,
+    "seats": 2,
+    "image": "http://ourautoexpert.com/wp-content/uploads/2016/02/smart-fortwo-cpe-LSF.jpg"
+  },
+  {
+    "brand": "Smart",
+    "model": "Proxy Coupe",
+    "automatic": false,
+    "roof_rack": false,
+    "price": 750,
+    "booked": false,
+    "seats": 2,
+    "image": "https://www.caranddriving.com/images/new/large/SmartFortwo0215Int(2).jpg"
+  },
+  {
+    "brand": "SEAT",
+    "model": "Mii",
+    "automatic": true,
+    "roof_rack": false,
+    "price": 600,
+    "booked": false,
+    "seats": 5,
+    "image": "http://www.automobilesreview.com/gallery/2012-seat-mii-5-door/2012-seat-mii-5-door-05.jpg"
+  },
+  {
+    "brand": "Electra Meccanica",
+    "model": "Solo",
+    "automatic": true,
+    "roof_rack": false,
+    "price": 1800,
+    "booked": false,
+    "seats": 1,
+    "image": "http://www.hybridcars.com/wp-content/uploads/2016/09/Photo-1-Solo-668x409.jpg"
+  },
+  {
+    "brand": "Ford",
+    "model": "Pinto",
+    "automatic": false,
+    "roof_rack": false,
+    "price": 985,
+    "booked": false,
+    "seats": 5,
+    "image": "https://static.cargurus.com/images/site/2011/03/12/08/43/1978_ford_pinto-pic-1294466519167882671-640x480.jpeg"
   }
 ]
 

@@ -3,7 +3,7 @@ const request = require('supertest');
 const { ObjectID } = require('mongodb');
 
 const { app } = require('../bin/www');
-const { User } = require('../models/users');
+const User = require('../models/users');
 
 const agent = request.agent(app);
 
@@ -17,7 +17,9 @@ const userData = {
     __v: 0
 };
 
-beforeEach((done) => {
+module.exports = {userData};
+
+before((done) => {
     User.remove({}).then(() => {
         agent
             .post('/users/signup')
@@ -35,7 +37,19 @@ beforeEach((done) => {
     });
 });
 
-describe('Signing up', () => {
+before((done) => {
+    agent
+        .post('/users/login')
+        .send(userData)
+        .end((err, res) => {
+            if (err) {
+                return done(err);
+            }
+            done();
+        });
+});
+
+describe('SIGNING USERS UP -----', () => {
     it('Username not being an email should error', (done) => {
         agent
             .post('/users/signup')
@@ -124,7 +138,7 @@ describe('Signing up', () => {
 
 });
 
-describe('Logging in', () => {
+describe('LOGGING USERS IN ------', () => {
     it('should not be able to login', (done) => {
         agent
             .post('/users/login')
