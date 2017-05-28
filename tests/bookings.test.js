@@ -12,6 +12,14 @@ const agent = request.agent(app);
 const {userData} = require('./user.test');
 const {carsData} = require('./cars.test');
 
+const bookingData = {
+    _id: new ObjectID(),
+    car_id: carsData[3]._id,
+    user_id: userData._id,
+    date_from: "2017-05-28T00:00:00.000Z",
+    date_to: "2017-05-28T00:00:00.000Z"
+};
+
 //SETS UP USER
 before((done) => {
     User.remove({}).then(() => {
@@ -61,7 +69,7 @@ beforeEach((done) => {
     });
 });
 
-describe('=== MAKE RESERVATIONS ===', () => {
+describe('=== RESERVATIONS ===', () => {
     it('should make a reserveration', (done) => {
         agent
             .post('/bookings/car/' + carsData[0]._id)
@@ -73,10 +81,6 @@ describe('=== MAKE RESERVATIONS ===', () => {
                 if(err) {
                     return done(err);
                 }
-                console.log(userData._id);
-
-                var userId;
-
                 //TODO: figure out why?
                 // using userdata id prop was returning an incorrect ID
                 User.find({}).then((users) => {
@@ -85,9 +89,28 @@ describe('=== MAKE RESERVATIONS ===', () => {
                         expect(booking.length).toBe(1);
                         expect(booking[0].car_id).toEqual(carsData[0]._id);
                         expect(booking[0].user_id).toEqual(userId);
-                        done();
+                        Car.findOne({_id: carsData[0]._id}).then((car) => {
+                            expect(car.booked).toBe(true);
+                            done();
+                        }).catch((e) => done(e));
                     }).catch((e) => done(e));
-                }).catch( (e) => done(e));
+                }).catch((e) => done(e));
             });
+        });
+
+    it('should cancel a reservation', (done) => {
+        Booking.create(bookingData).then((booking) => {
+            agent
+                .post('/bookings/' + bookingData._id)
+                .end((err, res) => {
+                    if(err)  console.log(err);
+                    Booking.find({}).then((booking) => {
+                        expect(booking.length).toBe(0);
+                    }).then(() => done());
+                });
+        }).catch((e) => done(e));
     });
 });
+
+
+
