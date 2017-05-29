@@ -77,7 +77,7 @@ $(document).ready(function () {
 
     var theForm = $(this);
     var url = theForm.attr("action") + "/filter",
-      method = "POST",
+      method = "PATCH",
       dataObj = $(theForm).serializeToJSON();
 
     console.log(url);

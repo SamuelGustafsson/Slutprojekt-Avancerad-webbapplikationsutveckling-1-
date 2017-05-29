@@ -48,33 +48,33 @@ router.get('/', function (req, res, next) {
     });
 });
 
-router.get('/reservation', function (req, res, next){
+router.get('/reservation', function (req, res, next) {
 
-  Bookings.aggregate([
-      {
-        $match: {
-          user_id: req.user._id
+    Bookings.aggregate([
+        {
+            $match: {
+                user_id: req.user._id
+            }
+        },
+        {
+            $lookup: {
+                from: "cars",
+                localField: "car_id",
+                foreignField: "_id",
+                as: "car_obj"
+            }
+        },
+        {
+            $lookup: {
+                from: "users",
+                localField: "user_id",
+                foreignField: "_id",
+                as: "user_obj"
+            }
         }
-      },
-      {
-        $lookup: {
-          from: "cars",
-          localField: "car_id",
-          foreignField: "_id",
-          as: "car_obj"
-        }
-      },
-      {
-        $lookup: {
-          from: "users",
-          localField: "user_id",
-          foreignField: "_id",
-          as: "user_obj"
-        }
-      }
-  ]).exec((err, usersObj) => {
-    res.render('reservation', { usersObj });
-  })
+    ]).exec((err, usersObj) => {
+        res.render('reservation', { usersObj });
+    })
 });
 
 
@@ -83,8 +83,18 @@ router.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
+router.get('/delete/:id', function (req, res, next) {
+
+    const { id } = req.params;
+    User.remove({ _id: id }, (err) => {
+        if (err) { return console.log(err); }
+        res.redirect("/users");
+    });
+});
+
+// Dummy route
+/* ! does not insert a reg. user with a hashed password atm! */
 router.get('/insert', function (req, res, next) {
-    /* ! does not insert a reg. user with a hashed password atm! */
 
     let firstname = randomstring.generate({
         length: 4,
@@ -111,15 +121,8 @@ router.get('/insert', function (req, res, next) {
     });
 });
 
-router.get('/delete/:id', function (req, res, next) {
-
-    const { id } = req.params;
-    User.remove({ _id: id }, (err) => {
-        if (err) { return console.log(err); }
-        res.redirect("/users");
-    });
-});
-
+// Dummy route
+// Deletes all cars
 router.get('/delete', function (req, res, next) {
 
     User.remove({}, (err) => {

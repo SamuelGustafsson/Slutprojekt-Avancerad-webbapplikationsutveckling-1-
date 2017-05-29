@@ -51,27 +51,29 @@ passport.deserializeUser(User.deserializeUser());
 
 //Middleware to check if 'req.user' is set
 app.use((req, res, next) => {
-    console.log("chk user obj exist: ", req.user);
+    if (process.env.NODE_ENV !== "test") {
+        console.log("chk user obj exist: ", req.user);
+    }
     next();
 });
 
 // middleware: set global value(s)
 app.use((req, res, next) => {
 
-  let devValue = true;
-  let env = process.env.NODE_ENV;
-  if( env === "localhost" ){
-    devValue = true;
-  }
-  // true equals "show dummy navbar AND hide the prod. navbar
-  // false equals "hide dummy navbar AND show the prod. navbar
-  app.locals.dev = devValue;
+    let devValue = false;
+    let env = process.env.NODE_ENV;
+    if (env === "localhost") {
+        devValue = true;
+    }
+    // true equals "show dummy navbar AND hide the prod. navbar
+    // false equals "hide dummy navbar AND show the prod. navbar
+    app.locals.dev = devValue;
 
-  app.locals.loggedin = false;
-  if(req.user){
-      app.locals.loggedin = true;
-  }
-  next();
+    app.locals.loggedin = false;
+    if (req.user) {
+        app.locals.loggedin = true;
+    }
+    next();
 });
 
 app.use('/', index);
@@ -80,7 +82,7 @@ app.use('/cars', carsRouter);
 app.use('/bookings', bookingsRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
 
     let err = new Error('Not Found');
 
@@ -89,7 +91,7 @@ app.use(function(req, res, next) {
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};

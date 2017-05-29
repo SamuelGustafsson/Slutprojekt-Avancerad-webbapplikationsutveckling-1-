@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 let Bookings = require('../models/bookings');
 let Cars = require('../models/cars');
 
-// TODO Uncomment this later
+
 /*
   middleware: redirect user IF one is NOT logged in
  (one is unable to access routes after this middleware!)
@@ -17,7 +17,7 @@ bookingsRouter.use((req, res, next) => {
 
 bookingsRouter.route('/')
 
-    // Display all bookings
+    // Display all reservations (POSTMAN)
     .get((req, res, next) => {
         Bookings.find({}, (error, reservation) => {
             if (error) throw error;
@@ -25,7 +25,7 @@ bookingsRouter.route('/')
         })
     })
 
-    // Add reservation
+    // Add reservation (POSTMAN)
     .post((req, res, next) => {
         Bookings.create(req.body, (err, reservation) => {
             if (err) throw err;
@@ -36,7 +36,7 @@ bookingsRouter.route('/')
 
 bookingsRouter.route('/:reservationId')
 
-    // Get reservation by id
+    // Get reservation by id (POSTMAN)
     .get((req, res, next) => {
         Bookings.findById(req.params.reservationId, (error, reservation) => {
             if (error) throw error;
@@ -45,7 +45,7 @@ bookingsRouter.route('/:reservationId')
         })
     })
 
-    // Update reservation by id
+    // Update reservation by id (POSTMAN)
     .put((req, res, next) => {
         Bookings.findByIdAndUpdate(req.params.id,
 
@@ -60,7 +60,7 @@ bookingsRouter.route('/:reservationId')
             });
     })
 
-    // Delete Reservation
+    // Delete Reservation (POSTMAN)
     .delete((req, res, next) => {
         Bookings.findByIdAndRemove(req.params.reservationId, (error, reservation) => {
             console.info(reservation);
@@ -68,41 +68,24 @@ bookingsRouter.route('/:reservationId')
     })
 
     // Cancel reservation
+    // It is a POST request because it deletes and update.
     .post((req, res, next) => {
 
         const bookingsId = req.params.reservationId;
 
-        Bookings.findByIdAndRemove(bookingsId).then( (reservationObj) => {
+        Bookings.findByIdAndRemove(bookingsId).then((reservationObj) => {
             const car_id = reservationObj.car_id;
             return Cars.findByIdAndUpdate(car_id, { $set: { booked: false } }, { new: true });
         }).then((updatedCarObj) => {
             res.redirect('back');
         })
-
-        // Cars.findByIdAndUpdate(req.params.reservationId, { $set: { booked: false } }, { new: true }).then((car) => {
-        //     return Bookings.create(req.params.reservationId);
-        // }).then((reservation) => {
-        //     res.send(reservation);
-        // }).catch((e) => {
-        //     console.log("Unable to insert your bookings request", e);
-        // });
-
-        // Bookings.findByIdAndRemove(req.params.reservationId, (error, reservation) => {
-        //     console.info(reservation);
-        //     res.redirect('back');
-        // })
     });
 
 
 bookingsRouter.route('/car/:carId')
 
+    // It is a POST request because it POST a reservation object and updates car object.
     .post((req, res, next) => {
-
-        console.log("\n-----booking data----------\n");
-        console.log(`\n \tcar id ${req.params.carId}`);
-        console.log(`\tUser id: ${req.user._id}`);
-        console.log(req.body);
-        console.log("\n---------------\n");
 
         const reservationData = {
             car_id: req.params.carId,
@@ -118,7 +101,6 @@ bookingsRouter.route('/car/:carId')
         }).catch((e) => {
             console.log("Unable to insert your bookings request", e);
         });
-
     });
 
 
@@ -129,7 +111,7 @@ bookingsRouter.route('/dummy/delete')
         Bookings.remove({}, (err, car) => {
             if (err) throw err;
             console.log("Remove all dummy bookings");
-            res.redirect("/");
+            res.redirect("/users/reservation");
         });
 
     });

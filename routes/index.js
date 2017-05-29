@@ -8,7 +8,6 @@ const Cars = require("../models/cars");
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-
   const { formError, authError } = req.query;
     res.render('index', {
         title: 'Car Rental Supreme - login',
@@ -17,7 +16,6 @@ router.get('/', function(req, res, next) {
     });
 });
 
-
 router.get('/signup', function(req, res, next) {
 
     const { formError } = req.query;
@@ -25,8 +23,5 @@ router.get('/signup', function(req, res, next) {
         formError: formError
     });
 });
-
-
-
 
 module.exports = router;
