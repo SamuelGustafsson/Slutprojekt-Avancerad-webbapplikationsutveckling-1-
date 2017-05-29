@@ -7,7 +7,7 @@ const { ObjectID } = require('mongodb');
 
 const { app } = require('../bin/www');
 const Car = require('../models/cars');
-const User  = require('../models/users');
+const User = require('../models/users');
 
 const agent = request.agent(app);
 
@@ -58,7 +58,7 @@ const carsData = [
     }
 ];
 const { userData } = require('./user.test');
-module.exports = {carsData};
+module.exports = { carsData };
 
 before((done) => {
     User.remove({}).then(() => {
@@ -91,9 +91,9 @@ before((done) => {
 });
 
 before((done) => {
-    Car.remove({}).then(() =>  {
+    Car.remove({}).then(() => {
         Car.create(carsData, (err, cars) => {
-            if(err) return done(err);
+            if (err) return done(err);
             done()
         });
     });
@@ -104,7 +104,7 @@ describe('=== DISPLAY CAR BY ID ===', () => {
         agent
             .get('/cars/' + carsData[0]._id)
             .end((err, res) => {
-                if(err) {
+                if (err) {
                     done(err);
                 }
                 expect(res.body).toContain(carsData[0]);
@@ -115,27 +115,27 @@ describe('=== DISPLAY CAR BY ID ===', () => {
 });
 
 describe('=== FILTER CARS ===', () => {
-    it('should return only 2 cars (one is booked and one is over default price)', (done) => {
+    it('should return available cars by filtration', (done) => {
         agent
-            .post('/cars/filter')
+            .patch('/cars/filter')
             .send({})
             .end((err, res) => {
-                if(err) {
+                if (err) {
                     return done(err);
                 }
-                expect(res.body.cars.length).toBe(2);
+                expect(res.body.cars.length).toBe(3);
                 done();
             });
     });
 
     it('should return 3 cars (one is booked and price limit increased)', (done) => {
         agent
-            .post('/cars/filter')
+            .patch('/cars/filter')
             .send({
                 price: 4000
             })
             .end((err, res) => {
-                if(err) {
+                if (err) {
                     return done(err);
                 }
                 expect(res.body.cars.length).toBe(3);
@@ -145,12 +145,12 @@ describe('=== FILTER CARS ===', () => {
 
     it('should return only the BMW', (done) => {
         agent
-            .post('/cars/filter')
+            .patch('/cars/filter')
             .send({
                 brand: "BMW"
             })
             .end((err, res) => {
-                if(err) {
+                if (err) {
                     return done(err);
                 }
                 expect(res.body.cars.length).toBe(1);

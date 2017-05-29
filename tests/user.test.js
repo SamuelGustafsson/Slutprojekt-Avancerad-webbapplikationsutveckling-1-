@@ -73,7 +73,7 @@ describe('SIGNING USERS UP -----', () => {
             });
     });
 
-    it('no username provided should error', (done) => {
+    it('no email provided should error', (done) => {
         agent
             .post('/users/signup')
             .send({
@@ -139,7 +139,7 @@ describe('SIGNING USERS UP -----', () => {
 });
 
 describe('LOGGING USERS IN ------', () => {
-    it('should not be able to login', (done) => {
+    it('should not be able to login with invalid credentials', (done) => {
         agent
             .post('/users/login')
             .send({

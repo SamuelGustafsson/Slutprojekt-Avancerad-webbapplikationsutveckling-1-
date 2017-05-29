@@ -13,112 +13,107 @@
 </head>
 
 <body>
-  {{#unless dev}}
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-          aria-expanded="false">
+  <div class="container">
+    {{#unless dev}}
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+            aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-        <a class="navbar-brand" href="#">Brand</a>
-      </div>
+          <a class="navbar-brand" href="/cars">Car Rental Supreme</a>
+        </div>
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-          <li><a href="#">Link</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">One more separated link</a></li>
-            </ul>
-          </li>
-        </ul>
-        <form class="navbar-form navbar-left">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
-          </div>
-          <button type="submit" class="btn btn-default">Submit</button>
-        </form>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Link</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
-            </ul>
-          </li>
-        </ul>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            {{#if loggedin}}
+            <li><a href="/users/reservation">My reservations <span class="sr-only">(current)</span></a></li>
+            {{/if}}
+            <li><a href="/cars">Rental cars<span class="sr-only">(current)</span></a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Configure collections <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/cars/dummy/insert">Insert cars</a></li>
+                <li><a href="/cars/dummy/delete">Delete all cars action</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="/bookings/dummy/delete">Delete all Reservations</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="/users">All users</a></li>
+                <li><a href="/users/delete">Delete all users</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {{#if loggedin}}
+            <li><a href="/users/logout">Logout</a></li>
+            {{/if}} {{#unless loggedin}}
+            <li class="navbar-right"><a href="/signup">Signup</a></li>
+            <li class="navbar-right"><a href="/">Login</a></li>
+            {{/unless}}
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
       </div>
-      <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-  </nav>
-  {{/unless}} {{#if dev}}
-  <ul class="nav nav-tabs">
-    <li role="presentation" class="dropdown">
-      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      <!-- /.container-fluid -->
+    </nav>
+    {{/unless}}
+    {{#if dev}}
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
         / route <span class="caret"></span>
       </a>
-      <ul class="dropdown-menu">
-        <li><a href="/">GET /</a></li>
-        <li><a href="/signup">GET /signup</a></li>
-      </ul>
-    </li>
-    <li role="presentation" class="dropdown">
-      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        <ul class="dropdown-menu">
+          <li><a href="/">GET /</a></li>
+          <li><a href="/signup">GET /signup</a></li>
+        </ul>
+      </li>
+      <li role="presentation" class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
         /users route <span class="caret"></span>
       </a>
-      <ul class="dropdown-menu">
-        <li><a href="/users">GET /users (list * users)</a></li>
-        <li><a href="/users/insert">GET /users/insert (1 random user)</a></li>
-        <li><a href="/users/delete">GET /users/delete (* users)</a></li>
-        <li class="divider"></li>
-        <li><a href="/users/reservation">GET /users/reservation</a></li>
-        <li class="divider"></li>
-        {{#if loggedin}}
-        <li><a href="/users/logout">GET /users/logout (logout)</a></li>{{/if}}
-      </ul>
-    </li>
+        <ul class="dropdown-menu">
+          <li><a href="/users">GET /users (list * users)</a></li>
+          <li><a href="/users/insert">GET /users/insert (1 random user)</a></li>
+          <li><a href="/users/delete">GET /users/delete (* users)</a></li>
+          <li class="divider"></li>
+          <li><a href="/users/reservation">GET /users/reservation</a></li>
+          <li class="divider"></li>
+          {{#if loggedin}}
+          <li><a href="/users/logout">GET /users/logout (logout)</a></li>{{/if}}
+        </ul>
+      </li>
 
-    <li role="presentation" class="dropdown">
-      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      <li role="presentation" class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
         /cars route <span class="caret"></span>
       </a>
-      <ul class="dropdown-menu">
-        <li><a href="/cars">GET /cars (list * available cars)</a></li>
-      </ul>
-    </li>
+        <ul class="dropdown-menu">
+          <li><a href="/cars">GET /cars (list * available cars)</a></li>
+        </ul>
+      </li>
 
-    <li role="presentation" class="dropdown">
-      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      <li role="presentation" class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
         /dummy route <span class="caret"></span>
       </a>
-      <ul class="dropdown-menu">
-        <li><a href="/cars/dummy/insert">GET /cars/dummy/insert</a></li>
-        <li><a href="/cars/dummy/delete">GET /cars/dummy/delete</a></li>
-        <li class="divider"></li>
-        <li><a href="/bookings/dummy/delete">GET /bookings/dummy/delete</a></li>
-      </ul>
-    </li>
-  </ul>
+        <ul class="dropdown-menu">
+          <li><a href="/cars/dummy/insert">GET /cars/dummy/insert</a></li>
+          <li><a href="/cars/dummy/delete">GET /cars/dummy/delete</a></li>
+          <li class="divider"></li>
+          <li><a href="/bookings/dummy/delete">GET /bookings/dummy/delete</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
   {{/if}} {{{body}}}
+
 
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
